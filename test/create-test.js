@@ -10,7 +10,7 @@ var request = require('supertest'),
     should = require('should'),
     modulePath = "../index";
 
-describe('module smoke test', function() {
+describe('create', function() {
 
     before(function(done) {
         // Call before all tests
@@ -32,20 +32,22 @@ describe('module smoke test', function() {
         done();
     });
 
-    it('module should exist', function(done) {
-        delete require.cache[require.resolve(modulePath)];
-        let factory = require(modulePath);
-        should.exist(factory);
-        done();
-    });
-
-    it('create should return an object', function(done) {
+    it('should return an object', function(done) {
         delete require.cache[require.resolve(modulePath)];
         let factory = require(modulePath);
         should.exist(factory);
         let spec = { x: 5, y: 10 };
         let obj = factory.create(spec);
         should.exist(obj);
+        done();
+    });
+
+    it('should return null if called without a spec', function(done) {
+        delete require.cache[require.resolve(modulePath)];
+        let factory = require(modulePath);
+        should.exist(factory);
+        let obj = factory.create();
+        should.not.exist(obj);
         done();
     });
 });

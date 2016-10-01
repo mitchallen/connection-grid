@@ -1,7 +1,7 @@
 
 @mitchallen/connection-grid
 ==
-PUT DESCRIPTION HERE
+Map connections between cells in a 2D grid.
 --
 * * *
 ## Installation
