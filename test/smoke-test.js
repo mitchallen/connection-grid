@@ -42,44 +42,44 @@ describe('module smoke test', function() {
     });
 
     it('create method with no spec should return null', function(done) {
-        var obj = _module.create();
-        should.not.exist(obj);
+        var grid = _module.create();
+        should.not.exist(grid);
         done();
     });
 
     it('create method with valid x and y parameters should return object', function(done) {
-        var obj = _module.create({ x: 5, y: 5 });
-        should.exist(obj);
+        var grid = _module.create({ x: 5, y: 5 });
+        should.exist(grid);
         done();
     });
 
     it('isCell method with valid x and y parameters should return true', function(done) {
         let sizeX = 5;
         let sizeY = 5;
-        var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
-        var result = obj.isCell(sizeX-1, sizeY-1);
+        var grid = _module.create({ x: sizeX, y: sizeY });
+        should.exist(grid);
+        var result = grid.isCell(sizeX-1, sizeY-1);
         result.should.eql(true);
         done();
     });
 
     it('set method with valid parameter should return true', function(done) {
-        var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
-        var result = obj.set(0,0,5);
+        var grid = _module.create({ x: 1, y: 1 });
+        should.exist(grid);
+        var result = grid.set(0,0,5);
         result.should.eql(true);
         done();
     });
 
     it('get method with valid parameter should return value', function(done) {
-        var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        var grid = _module.create({ x: 1, y: 1 });
+        should.exist(grid);
         let tX = 0;
         let tY = 0;
         let tValue = 5;
-        var condition = obj.set(tX,tY,tValue);
+        var condition = grid.set(tX,tY,tValue);
         condition.should.eql(true);
-        var result = obj.get(tX,tY);
+        var result = grid.get(tX,tY);
         result.should.eql(tValue);
         done();
     });
@@ -87,80 +87,96 @@ describe('module smoke test', function() {
     it('fill method with valid integer should fill grid with integer', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.create({ x: xSize, y: ySize });
-        should.exist(obj);
+        var grid = _module.create({ x: xSize, y: ySize });
+        should.exist(grid);
         let tValue = 999;
-        var result = obj.fill(tValue);
+        var result = grid.fill(tValue);
         for(var x = 0; x < xSize; x++ ) {
             for(var y = 0; y < ySize; y++ ) {
-                obj.get(x,y).should.eql(tValue);
+                grid.get(x,y).should.eql(tValue);
             }
         }
         done();
     });
 
    it('cloneArray method should return a clone of the internal array', function(done) {
-        var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        var grid = _module.create({ x: 1, y: 1 });
+        should.exist(grid);
         let tX = 0;
         let tY = 0;
         let tValue = 100;
-        var result = obj.set(tX,tY,tValue);
+        var result = grid.set(tX,tY,tValue);
         result.should.eql(true);
-        var arr = obj.cloneArray();
+        var arr = grid.cloneArray();
         arr[tX][tY].should.eql(tValue);
         done();
     });
 
     it('log method should not throw exception', function(done) {
-        var obj = _module.create({ x: 5, y: 5 });
-        should.exist(obj);
-        obj.fill(10)
-        obj.set(0,0,20);
-        obj.set(4,4,30);
-        obj.log();
+        var grid = _module.create({ x: 5, y: 5 });
+        should.exist(grid);
+        grid.fill(10)
+        grid.set(0,0,20);
+        grid.set(4,4,30);
+        grid.log();
         done();
     });
 
     it('getNeighbors should return correct list', function(done) {
-        var obj = _module.create({ x: 5, y: 5 });
-        should.exist(obj);
-        let N = 0x010;
-        let S = 0x020;
-        let E = 0x040;
-        let W = 0x080;
-        obj.getNeighbors().should.eql([ N, S, E, W ]);
+        var grid = _module.create({ x: 5, y: 5 });
+        should.exist(grid);
+        let N = grid.N;
+        let S = grid.S;
+        let E = grid.E;
+        let W = grid.W;
+        grid.getNeighbors().should.eql([ N, S, E, W ]);
         done();
     });
 
     it('markVisited should return true for valid cell', function(done) {
-        var obj = _module.create({ x: 3, y: 3 });
-        should.exist(obj);
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
         let tX = 0;
         let tY = 0;
         let VISITED = 0x01;
-        var result = obj.markVisited(tX,tY);
+        var result = grid.markVisited(tX,tY);
         result.should.eql(true);
-        obj.get(tX,tY).should.eql(VISITED);
+        grid.get(tX,tY).should.eql(VISITED);
         done();
     });
 
     it('visited should return true for a visited cell', function(done) {
-        var obj = _module.create({ x: 3, y: 3 });
-        should.exist(obj);
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
         let tX = 0;
         let tY = 0;
-        obj.markVisited(tX,tY).should.eql(true);
-        obj.visited(tX,tY).should.eql(true);
+        grid.markVisited(tX,tY).should.eql(true);
+        grid.visited(tX,tY).should.eql(true);
         done();
     });
 
     it('hasConnections should return false when nothing connected', function(done) {
-        var obj = _module.create({ x: 3, y: 3 });
-        should.exist(obj);
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
         let tX = 0;
         let tY = 0;
-        obj.hasConnections(tX-1,tY).should.eql(false);
+        grid.hasConnections(tX,tY).should.eql(false);
+        done();
+    });
+
+    it('getNeighbor should return neighbor x and y values', function(done) {
+        var grid = _module.create({ x: 5, y: 5 });
+        should.exist(grid);
+        let tX = 2;
+        let tY = 3;
+        let list = ["N","S","E","W"];
+        for(var dir = 0; dir < list.length; dir++ ) {
+            var cell = grid.getNeighbor(tX,tY,list[dir]);
+            should.exist(cell);
+            console.log(tX, tY, list[dir], cell);
+            (cell.x >= tX - 1 && cell.x <= tX + 1).should.eql(true);
+            (cell.y >= tY - 1 && cell.y <= tY + 1).should.eql(true);
+        }
         done();
     });
 });

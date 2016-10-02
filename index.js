@@ -33,10 +33,10 @@ module.exports.create = function (spec) {
     let START   = 0x02;
     let GOAL    = 0x03;
 
-    let N = 0x010;
-    let S = 0x020;
-    let E = 0x040;
-    let W = 0x080;
+    let _N = 0x010;
+    let _S = 0x020;
+    let _E = 0x040;
+    let _W = 0x080;
 
     // let NW = 0x100
     // let NE = 0x200
@@ -44,17 +44,23 @@ module.exports.create = function (spec) {
     // let SE = 0x800
 
     // Default square configuration
-    let DX = { E: 1, W: -1, N: 0, S: 0 };
-    let DY = { E: 0, W: 0, N: -1, S: 1 };
-    let OPPOSITE = { E: W, W: E, N: S, S: N };
+    let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
+    let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
+    let _OPPOSITE = { "E": _W, "W": _E, "N": _S, "S": _N };
 
     return Object.assign( _grid, {
+
+        N: _N,
+        S: _S,
+        E: _E,
+        W: _W,
+
         log: function() { 
             console.log( this.cloneArray() ); 
         },
         getNeighbors: function( x, y ) {
             // Classic ignores x and y, but other derived classes may not
-            return [ N, S, E, W ];
+            return [ _N, _S, _E, _W ];
         },
         markVisited: function( x, y )  {
             if(!this.isCell( x, y )) { return false; }
@@ -77,6 +83,12 @@ module.exports.create = function (spec) {
                 }
             }
             return false;
-    }
+        },
+        getNeighbor: function(x, y, dir) {
+            // Up to caller to verify if cell or returned neighbor isCell
+            var nx = x + _DX[dir];
+            var ny = y + _DY[dir];
+            return { x: nx, y: ny }
+        }
     });
 };
