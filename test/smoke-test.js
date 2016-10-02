@@ -125,10 +125,10 @@ describe('module smoke test', function() {
     it('getNeighbors should return correct list', function(done) {
         var obj = _module.create({ x: 5, y: 5 });
         should.exist(obj);
-        let N = 1;
-        let S = 2;
-        let E = 4;
-        let W = 8;
+        let N = 0x010;
+        let S = 0x020;
+        let E = 0x040;
+        let W = 0x080;
         obj.getNeighbors().should.eql([ N, S, E, W ]);
         done();
     });

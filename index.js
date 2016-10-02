@@ -29,10 +29,19 @@ module.exports.create = function (spec) {
     _grid.fill(0);
 
     // bit masks
-    let N = 1; 
-    let S = 2; 
-    let E = 4;
-    let W = 8;
+    let VISITED = 0x01;
+    let START   = 0x02;
+    let GOAL    = 0x03;
+
+    let N = 0x010;
+    let S = 0x020;
+    let E = 0x040;
+    let W = 0x080;
+
+    // let NW = 0x100
+    // let NE = 0x200
+    // let SW = 0x400
+    // let SE = 0x800
 
     // Default square configuration
     let DX = { E: 1, W: -1, N: 0, S: 0 };
