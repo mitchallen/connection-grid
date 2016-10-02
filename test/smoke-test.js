@@ -121,4 +121,15 @@ describe('module smoke test', function() {
         obj.log();
         done();
     });
+
+    it('getNeighbors should return correct list', function(done) {
+        var obj = _module.create({ x: 5, y: 5 });
+        should.exist(obj);
+        let N = 1;
+        let S = 2;
+        let E = 4;
+        let W = 8;
+        obj.getNeighbors().should.eql([ N, S, E, W ]);
+        done();
+    });
 });
