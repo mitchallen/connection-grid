@@ -154,4 +154,13 @@ describe('module smoke test', function() {
         obj.visited(tX,tY).should.eql(true);
         done();
     });
+
+    it('hasConnections should return false when nothing connected', function(done) {
+        var obj = _module.create({ x: 3, y: 3 });
+        should.exist(obj);
+        let tX = 0;
+        let tY = 0;
+        obj.hasConnections(tX-1,tY).should.eql(false);
+        done();
+    });
 });

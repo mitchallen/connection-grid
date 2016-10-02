@@ -64,6 +64,19 @@ module.exports.create = function (spec) {
         visited: function(x, y) {
             if(!this.isCell(x, y)) { return false; }
             return ( ( this.get(x,y) & VISITED ) != 0 );
-        }
+        },
+        hasConnections: function( x, y) {
+            // Need to discount visited flag, etc
+            let cell = this.get(x,y);
+            if(!cell) { return false; }
+            let list = this.getNeighbors(x, y);
+            for(var dir in list) {
+                console.log(cell, dir, cell & dir);
+                if((cell & dir) != 0) {
+                    return true;
+                }
+            }
+            return false;
+    }
     });
 };
