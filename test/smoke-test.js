@@ -132,4 +132,16 @@ describe('module smoke test', function() {
         obj.getNeighbors().should.eql([ N, S, E, W ]);
         done();
     });
+
+    it('markVisited should return true for valid cell', function(done) {
+        var obj = _module.create({ x: 3, y: 3 });
+        should.exist(obj);
+        let tX = 0;
+        let tY = 0;
+        let VISITED = 0x01;
+        var result = obj.markVisited(tX,tY);
+        result.should.eql(true);
+        obj.get(tX,tY).should.eql(VISITED);
+        done();
+    });
 });

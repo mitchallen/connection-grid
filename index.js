@@ -55,6 +55,11 @@ module.exports.create = function (spec) {
         getNeighbors: function( x, y ) {
             // Classic ignores x and y, but other derived classes may not
             return [ N, S, E, W ];
+        },
+        markVisited: function( x, y )  {
+            if(!this.isCell( x, y )) { return false }
+            this.set( x,y, this.get(x,y) | VISITED );
+            return true;
         }
     });
 };
