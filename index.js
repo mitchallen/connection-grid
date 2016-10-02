@@ -26,7 +26,10 @@ module.exports.create = function (spec) {
     if(!_grid) {
         return null;
     }
-    // place holder example
-    _grid.hello = function() { console.log("Hello grid!"); }
-    return _grid;
+    _grid.fill(0);
+    return Object.assign( _grid, {
+        log: function() { 
+            console.log( this.cloneArray() ); 
+        }
+    });
 };
