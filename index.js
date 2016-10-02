@@ -57,9 +57,13 @@ module.exports.create = function (spec) {
             return [ N, S, E, W ];
         },
         markVisited: function( x, y )  {
-            if(!this.isCell( x, y )) { return false }
+            if(!this.isCell( x, y )) { return false; }
             this.set( x,y, this.get(x,y) | VISITED );
             return true;
+        },
+        visited: function(x, y) {
+            if(!this.isCell(x, y)) { return false; }
+            return ( ( this.get(x,y) & VISITED ) != 0 );
         }
     });
 };

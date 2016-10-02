@@ -144,4 +144,14 @@ describe('module smoke test', function() {
         obj.get(tX,tY).should.eql(VISITED);
         done();
     });
+
+    it('visited should return true for a visited cell', function(done) {
+        var obj = _module.create({ x: 3, y: 3 });
+        should.exist(obj);
+        let tX = 0;
+        let tY = 0;
+        obj.markVisited(tX,tY).should.eql(true);
+        obj.visited(tX,tY).should.eql(true);
+        done();
+    });
 });
