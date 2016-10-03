@@ -48,7 +48,7 @@ module.exports.create = function (spec) {
     // Default square configuration
     let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
     let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
-    let _OPPOSITE = { "E": _W, "W": _E, "N": _S, "S": _N };
+    let _OPPOSITE = { "E": "W", "W": "E", "N": "S", "S": "N" };
 
 
     return Object.assign( _grid, {
@@ -84,8 +84,8 @@ module.exports.create = function (spec) {
             return false;
         },
         getNeighbor: function(x, y, dir) {
-            // dir must be string
             if(!this.isCell(x, y)) { return null; }
+            // dir must be string and in dirmap
             if(!_DIR_MAP[dir]) { return null; }
             var nx = x + _DX[dir];
             var ny = y + _DY[dir];
@@ -97,10 +97,19 @@ module.exports.create = function (spec) {
         connect: function( x, y, dir ) {
             // dir must be string
             // Connect cell to neighbor (one way)}
-            let dirInt = _DIR_MAP[dir];
-            if(!dirInt) return false;
             if(!this.getNeighbor(x,y,dir)) return false;
-            return this.set(x, y, this.get(x,y) | dirInt);
-        }
+            return this.set(x, y, this.get(x,y) | _DIR_MAP[dir]);
+        },
+        connectUndirected: function( x, y, dir) {
+            // dir must be a string
+            if(!this.connect(x, y, dir)) { 
+                return false; 
+            }
+            var n = this.getNeighbor(x, y, dir);
+            if(!this.connect( n.x, n.y, _OPPOSITE[dir])) {
+                return false;
+            }
+            return true;
+    }
     });
 };
