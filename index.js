@@ -59,6 +59,17 @@ module.exports.create = function (spec) {
         E: _E,
         W: _W,
 
+        getNeighbor: function(x, y, dir) {
+            if(!this.isCell(x, y)) { return null; }
+            // dir must be string and in dirmap
+            if(!_DIR_MAP[dir]) { return null; }
+            var nx = x + _DX[dir];
+            var ny = y + _DY[dir];
+            if(!this.isCell(nx, ny)) { 
+                return null; 
+            }
+            return { x: nx, y: ny }
+        },
         getNeighborDirs: function( x, y ) {
             // Classic ignores x and y, but other derived classes may not
             return [ _N, _S, _E, _W ];
@@ -88,24 +99,13 @@ module.exports.create = function (spec) {
             }
             return false;
         },
-        getNeighbor: function(x, y, dir) {
-            if(!this.isCell(x, y)) { return null; }
-            // dir must be string and in dirmap
-            if(!_DIR_MAP[dir]) { return null; }
-            var nx = x + _DX[dir];
-            var ny = y + _DY[dir];
-            if(!this.isCell(nx, ny)) { 
-                return null; 
-            }
-            return { x: nx, y: ny }
-        },
         connect: function( x, y, dir ) {
             // dir must be string
             // Connect cell to neighbor (one way)}
             if(!this.getNeighbor(x,y,dir)) return false;
             return this.set(x, y, this.get(x,y) | _DIR_MAP[dir]);
         },
-        connectUndirected: function( x, y, dir) {
+        connectUndirected: function(x, y, dir) {
             // dir must be a string
             if(!this.connect(x, y, dir)) { 
                 return false; 
