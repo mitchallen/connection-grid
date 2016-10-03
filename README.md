@@ -124,6 +124,18 @@ Example:
 
 	if(grid.connectUndirected(2,2,"N")) ...
 
+### object.connects(x, y, dir)
+
+Returns true if cell has a connection in the specified direction.
+
+* __dir__ - can be "N", "E", "S", or "W";
+
+Example:
+
+	if(grid.connects(2,2,"N")) ...
+
+* * *
+
 * * *
 
 ## Testing
@@ -157,5 +169,9 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 #### Version 0.1.1 
 
 * fixed bug in __hasConnections__
+
+#### Version 0.1.2 
+
+* added __connects__ method
 
 * * *

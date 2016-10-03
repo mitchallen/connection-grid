@@ -123,6 +123,16 @@ module.exports.create = function (spec) {
                 return false;
             }
             return true;
-    }
+        },
+        connects: function(x,y,sDir) {
+            if(!this.isDir(sDir)) {
+                console.error("connects unknown direction: ", sDir);
+                return false;
+            }
+            let cell = this.get(x,y);
+            if(cell===null) { return false; }
+            var iDir = _DIR_MAP[sDir];
+            return((cell & iDir) !== 0);
+        }
     });
 };

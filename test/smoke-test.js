@@ -137,7 +137,9 @@ describe('module smoke test', function() {
         let tX = 1;
         let tY = 2;
         var shuffled = grid.getShuffledNeighborDirs(tX,tY);
-        shuffled.should.not.eql(grid.getNeighborDirs(tX,tY));
+        shuffled.length.should.eql(4);
+        // Now and then it does return same list ...
+        // shuffled.should.not.eql(grid.getNeighborDirs(tX,tY));
         done();
     });
 
@@ -211,6 +213,26 @@ describe('module smoke test', function() {
         var n = grid.getNeighbor(tX,tY,"S");
         should.exist(n);
         grid.get(n.x,n.y).should.eql(dirMap.N);
+        done();
+    });
+
+    it('connects should return true for valid connection in direction', function(done) {
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
+        let tX = 0;
+        let tY = 0;
+        grid.connect(tX,tY,"S").should.eql(true);
+        grid.connects(tX,tY,"S").should.eql(true);
+        done();
+    });
+
+    it('connects should return false for invalid connection in direction', function(done) {
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
+        let tX = 0;
+        let tY = 0;
+        grid.connect(tX,tY,"S").should.eql(true);
+        grid.connects(tX,tY,"N").should.eql(false);
         done();
     });
 });
