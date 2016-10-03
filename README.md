@@ -110,6 +110,8 @@ Marks a connection from the current cell to a neighbor cell. Will return false i
 
 * __dir__ - can be "N", "E", "S", or "W";
 
+Example:
+
 	if(grid.connect(2,2,"N")) ...
 
 ### object.connectUndirected(x, y, dir)
@@ -117,6 +119,8 @@ Marks a connection from the current cell to a neighbor cell. Will return false i
 Marks a connection from the current cell to a neighbor cell *and back again*. Will return false if x, y coordinate or direction is not valid. Marks a connection in one direction. Cell A connected to Cell B also results in Cell B being marked as connected to Cell A. It's the same as calling __connect__ once from each cell and reversing the direction.
 
 * __dir__ - can be "N", "E", "S", or "W";
+
+Example:
 
 	if(grid.connectUndirected(2,2,"N")) ...
 
