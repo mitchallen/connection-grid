@@ -181,4 +181,13 @@ describe('module smoke test', function() {
         }
         done();
     });
+    it('connect should return true for valid parameters and set cell value to direction', function(done) {
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
+        let tX = 0;
+        let tY = 0;
+        grid.connect(tX,tY,"S").should.eql(true);
+        grid.get(tX,tY).should.eql(grid.S);
+        done();
+    });
 });

@@ -43,10 +43,13 @@ module.exports.create = function (spec) {
     // let SW = 0x400
     // let SE = 0x800
 
+    let _DIR_MAP = { "N": _N, "S": _S, "E": _E, "W": _W };
+
     // Default square configuration
     let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
     let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
     let _OPPOSITE = { "E": _W, "W": _E, "N": _S, "S": _N };
+
 
     return Object.assign( _grid, {
 
@@ -60,15 +63,14 @@ module.exports.create = function (spec) {
             return [ _N, _S, _E, _W ];
         },
         markVisited: function( x, y )  {
-            if(!this.isCell( x, y )) { return false; }
-            this.set( x,y, this.get(x,y) | VISITED );
+            return this.set( x,y, this.get(x,y) | VISITED );
             return true;
         },
         visited: function(x, y) {
             if(!this.isCell(x, y)) { return false; }
             return ( ( this.get(x,y) & VISITED ) != 0 );
         },
-        hasConnections: function( x, y) {
+        hasConnections: function(x, y) {
             // Need to discount visited flag, etc
             let cell = this.get(x,y);
             if(!cell) { return false; }
@@ -82,10 +84,24 @@ module.exports.create = function (spec) {
             return false;
         },
         getNeighbor: function(x, y, dir) {
-            // Up to caller to verify if cell or returned neighbor isCell
+            // dir must be string
+            if(!this.isCell(x, y)) { 
+                return null; 
+            }
             var nx = x + _DX[dir];
             var ny = y + _DY[dir];
+            if(!this.isCell(nx, ny)) { 
+                return null; 
+            }
             return { x: nx, y: ny }
+        },
+        connect: function( x, y, dir ) {
+            // dir must be string
+            // Connect cell to neighbor (one way)}
+            let dirInt = _DIR_MAP[dir];
+            if(!dirInt) return false;
+            if(!this.getNeighbor(x,y,dir)) return false;
+            return this.set(x, y, this.get(x,y) | dirInt);
         }
     });
 };
