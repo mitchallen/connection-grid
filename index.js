@@ -22,7 +22,7 @@ module.exports.create = function (spec) {
     let _gridSpec = {
         x: _x,
         y: _y
-    }
+    };
     var _grid = gridFactory.create(_gridSpec);
     if(!_grid) {
         return null;
@@ -58,7 +58,7 @@ module.exports.create = function (spec) {
         },
         isDir: function(dir) {
             if(typeof dir === 'string') {
-                return(_DIR_MAP[dir]!=null);
+                return(_DIR_MAP[dir]!==null);
             }
             return false;
         },
@@ -71,7 +71,7 @@ module.exports.create = function (spec) {
             if(!this.isCell(nx, ny)) { 
                 return null; 
             }
-            return { x: nx, y: ny }
+            return { x: nx, y: ny };
         },
         getNeighborDirs: function(x, y) {
             // Classic ignores x and y, but other derived classes may not
@@ -83,11 +83,10 @@ module.exports.create = function (spec) {
         },
         markVisited: function( x, y )  {
             return this.set( x,y, this.get(x,y) | VISITED );
-            return true;
         },
         visited: function(x, y) {
             if(!this.isCell(x, y)) { return false; }
-            return ( ( this.get(x,y) & VISITED ) != 0 );
+            return ( ( this.get(x,y) & VISITED ) !== 0 );
         },
         hasConnections: function(x, y) {
             // Need to discount visited flag, etc
@@ -99,9 +98,8 @@ module.exports.create = function (spec) {
                     console.error("hasConnections unknown direction: ", sDir);
                     return false;
                 }
-                var iDir = _DIR_MAP[dir];
-                console.log(cell, dir, cell & iDir);
-                if((cell & iDir) != 0) {
+                var iDir = _DIR_MAP[sDir];
+                if((cell & iDir) !== 0) {
                     return true;
                 }
             }
