@@ -85,9 +85,8 @@ module.exports.create = function (spec) {
         },
         getNeighbor: function(x, y, dir) {
             // dir must be string
-            if(!this.isCell(x, y)) { 
-                return null; 
-            }
+            if(!this.isCell(x, y)) { return null; }
+            if(!_DIR_MAP[dir]) { return null; }
             var nx = x + _DX[dir];
             var ny = y + _DY[dir];
             if(!this.isCell(nx, ny)) { 
