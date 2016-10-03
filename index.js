@@ -55,10 +55,7 @@ module.exports.create = function (spec) {
         E: _E,
         W: _W,
 
-        log: function() { 
-            console.log( this.cloneArray() ); 
-        },
-        getNeighbors: function( x, y ) {
+        getNeighborDirs: function( x, y ) {
             // Classic ignores x and y, but other derived classes may not
             return [ _N, _S, _E, _W ];
         },
@@ -75,7 +72,7 @@ module.exports.create = function (spec) {
             // Need to discount visited flag, etc
             let cell = this.get(x,y);
             if(!cell) { return false; }
-            let list = this.getNeighbors(x, y);
+            let list = this.getNeighborDirs(x, y);
             for(var dir in list) {
                 console.log(cell, dir, cell & dir);
                 if((cell & dir) != 0) {

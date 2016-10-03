@@ -26,6 +26,6 @@
     "supertest": "^2.0.0"
   },
   "dependencies": {
-    "@mitchallen/grid": "^0.1.4"
+    "@mitchallen/grid": "^0.1.5"
   }
 }

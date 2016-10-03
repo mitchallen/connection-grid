@@ -113,23 +113,25 @@ describe('module smoke test', function() {
     });
 
     it('log method should not throw exception', function(done) {
-        var grid = _module.create({ x: 5, y: 5 });
+        let xSize = 4;
+        let ySize = 5;
+        var grid = _module.create({ x: xSize, y: ySize });
         should.exist(grid);
         grid.fill(10)
         grid.set(0,0,20);
-        grid.set(4,4,30);
+        grid.set(xSize - 1, ySize - 1,30);
         grid.log();
         done();
     });
 
-    it('getNeighbors should return correct list', function(done) {
+    it('getNeighborDirs should return correct list', function(done) {
         var grid = _module.create({ x: 5, y: 5 });
         should.exist(grid);
         let N = grid.N;
         let S = grid.S;
         let E = grid.E;
         let W = grid.W;
-        grid.getNeighbors().should.eql([ N, S, E, W ]);
+        grid.getNeighborDirs().should.eql([ N, S, E, W ]);
         done();
     });
 
