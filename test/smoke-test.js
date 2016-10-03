@@ -131,7 +131,19 @@ describe('module smoke test', function() {
         let S = grid.S;
         let E = grid.E;
         let W = grid.W;
-        grid.getNeighborDirs().should.eql([ N, S, E, W ]);
+        grid.getNeighborDirs(1,1).should.eql([ N, S, E, W ]);
+        done();
+    });
+
+    it('getShuffledNeighborDirs should return correct list', function(done) {
+        var grid = _module.create({ x: 5, y: 5 });
+        should.exist(grid);
+        let N = grid.N;
+        let S = grid.S;
+        let E = grid.E;
+        let W = grid.W;
+        var shuffled = grid.getShuffledNeighborDirs(1,1);
+        console.log("shuffled: ", shuffled);
         done();
     });
 

@@ -7,7 +7,8 @@
 
 "use strict";
 
-var gridFactory = require("@mitchallen/grid");
+var gridFactory = require("@mitchallen/grid"),
+    shuffleFactory = require("@mitchallen/shuffle");
 
 module.exports.create = function (spec) {
     if(!spec) {
@@ -61,6 +62,10 @@ module.exports.create = function (spec) {
         getNeighborDirs: function( x, y ) {
             // Classic ignores x and y, but other derived classes may not
             return [ _N, _S, _E, _W ];
+        },
+        getShuffledNeighborDirs: function( x, y ) {
+            var shuffler = shuffleFactory.create( { array: this.getNeighborDirs(x,y) } );
+            return shuffler.shuffle();
         },
         markVisited: function( x, y )  {
             return this.set( x,y, this.get(x,y) | VISITED );
