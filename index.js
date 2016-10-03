@@ -57,7 +57,10 @@ module.exports.create = function (spec) {
             return _DIR_MAP;
         },
         isDir: function(dir) {
-            return(_DIR_MAP[dir]!=null);
+            if(typeof dir === 'string') {
+                return(_DIR_MAP[dir]!=null);
+            }
+            return false;
         },
         getNeighbor: function(x, y, dir) {
             if(!this.isCell(x, y)) { return null; }

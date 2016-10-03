@@ -29,9 +29,9 @@ You must use __npm__ __2.7.0__ or higher because of the scoped package name.
 
 For additional methods, see the documentation for the base class: __[@mitchallen/grid](https://www.npmjs.com/package/@mitchallen/grid)__.
 
-### shuffler = factory.create(spec)
+### gridFactory = factory.create(spec)
 
-Factory method that returns a grid object. This overrides the __create__ method in the base class.
+Factory method that returns a connected grid object. This overrides the __create__ method in the base class.
 
 It takes one spec parameter that must be an object with x and y values specifying the size of the connection grid.
 
@@ -47,29 +47,19 @@ You can call create multiple times to create multiple connection grids.
 
     if(!grid1 || !grid2) ...
     
-### int = object.N
+### list = object.getDirMap()
 
-Returns the internal bit flag value for NORTH.
+Returns a map of the internal direction bit flags.  The flags can be either __N__, __E__, __W__, or __S__.
 
-    let N = grid.N;
+    let dirMap = grid.getDirMap();
+    
+	if(dirMap.N == ... )
 
-### int = object.S
+### list = object.isDir(dir)
 
-Returns the internal bit flag value for SOUTH.
+Will return true if __dir__ is one of these strings: __"N"__, __"E"__, __"S"__, or __"W"__; 
 
-    let S = grid.S;
-
-### int = object.E
-
-Returns the internal bit flag value for EAST.
-
-    let E = grid.E;
-
-### int = object.W
-
-Returns the internal bit flag value for WEST.
-
-    let W = grid.W;
+	if(isDir("N")) ...
 
 ### coord = object.getNeighbor(x, y, dir)
 
@@ -87,37 +77,48 @@ Returns an object containing coordinates in the form of __{ x: *integer*, y: *in
 ### list = object.getNeighborDirs( x, y )
 
 Returns a list containing the directions of all neighbors. The list contains the internal bit flag values.
-
-    let N = grid.N;
-    let S = grid.S;
-    let E = grid.E;
-    let W = grid.W;
     
-    grid.getNeighborDirs(1,1).should.eql([ N, S, E, W ]);
+    grid.getNeighborDirs(1,1).should.eql([ "N", "S", "E", "W"  ]);
 
 ### list = object.getShuffledNeighborDirs( x, y )
 
-Returns a shuffled list containing the directions of all neighbors. The list contains the internal bit flag values.
+Returns a shuffled list containing the directions of all neighbors. The list is in the form of strings (example: [ "W", "N", "E", "S" ]).
 
     let list = grid.getShuffledNeighborDirs( x, y );
 
-### object.markVisited( x, y ) 
+### bool = object.markVisited( x, y ) 
 
-TODO
+Uses an internal bit flag to mark a cell as __visited__. This is useful in some applications, such as maze generation.  Will return false if x, y coordinate is not valid.
 
-### object.visited(x, y)
+	grid.markVisited(0,0);
 
-TODO
+### bool object.visited(x, y)
+
+Returns true if the cell had been marked with a call to __markVisited__.
+
+	return grid.visited(0,0);
 
 ### object.hasConnections(x, y) 
 
-TODO
+Will return true if the cell at x and y is connected to any other cell.  Will return false if x, y coordinate is not valid.
 
-### object.connect( x, y, dir )
+	if(grid.hasConnections(x, y)) ...
 
-TODO
+### bool = object.connect( x, y, dir )
 
-### object.connectUndirected: function(x, y, dir)
+Marks a connection from the current cell to a neighbor cell. Will return false if x, y coordinate or direction is not valid. Only marks a connection in one direction.  Cell A connected to Cell B doesn't necessarily mean that Cell B is connected to Cell A. To connect in both directions see __connectUndirected__.
+
+* __dir__ - can be "N", "E", "S", or "W";
+
+	if(grid.connect(2,2,"N")) ...
+
+### object.connectUndirected(x, y, dir)
+
+Marks a connection from the current cell to a neighbor cell *and back again*. Will return false if x, y coordinate or direction is not valid. Marks a connection in one direction. Cell A connected to Cell B also results in Cell B being marked as connected to Cell A. It's the same as calling __connect__ once from each cell and reversing the direction.
+
+* __dir__ - can be "N", "E", "S", or "W";
+
+	if(grid.connectUndirected(2,2,"N")) ...
 
 * * *
 
