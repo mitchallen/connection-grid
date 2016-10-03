@@ -34,17 +34,16 @@ module.exports.create = function (spec) {
     let START   = 0x02;
     let GOAL    = 0x03;
 
-    let _N = 0x010;
-    let _S = 0x020;
-    let _E = 0x040;
-    let _W = 0x080;
+    let _DIR_MAP = { 
+        "N": 0x010, 
+        "S": 0x020, 
+        "E": 0x040, 
+        "W": 0x080 };
 
     // let NW = 0x100
     // let NE = 0x200
     // let SW = 0x400
     // let SE = 0x800
-
-    let _DIR_MAP = { "N": _N, "S": _S, "E": _E, "W": _W };
 
     // Default square configuration
     let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
@@ -54,15 +53,16 @@ module.exports.create = function (spec) {
 
     return Object.assign( _grid, {
 
-        N: _N,
-        S: _S,
-        E: _E,
-        W: _W,
-
+        getDirMap: function() {
+            return _DIR_MAP;
+        },
+        isDir: function(dir) {
+            return(_DIR_MAP[dir]!=null);
+        },
         getNeighbor: function(x, y, dir) {
             if(!this.isCell(x, y)) { return null; }
             // dir must be string and in dirmap
-            if(!_DIR_MAP[dir]) { return null; }
+            if(!this.isDir(dir)) { return null; }
             var nx = x + _DX[dir];
             var ny = y + _DY[dir];
             if(!this.isCell(nx, ny)) { 
@@ -70,9 +70,9 @@ module.exports.create = function (spec) {
             }
             return { x: nx, y: ny }
         },
-        getNeighborDirs: function( x, y ) {
+        getNeighborDirs: function(x, y) {
             // Classic ignores x and y, but other derived classes may not
-            return [ _N, _S, _E, _W ];
+            return [ "N", "S", "E", "W" ];
         },
         getShuffledNeighborDirs: function( x, y ) {
             var shuffler = shuffleFactory.create( { array: this.getNeighborDirs(x,y) } );
@@ -91,9 +91,14 @@ module.exports.create = function (spec) {
             let cell = this.get(x,y);
             if(!cell) { return false; }
             let list = this.getNeighborDirs(x, y);
-            for(var dir in list) {
-                console.log(cell, dir, cell & dir);
-                if((cell & dir) != 0) {
+            for(var sDir in list) {
+                if(!this.isDir(sDir)) {
+                    console.error("hasConnections unknown direction: ", sDir);
+                    return false;
+                }
+                var iDir = _DIR_MAP[dir];
+                console.log(cell, dir, cell & iDir);
+                if((cell & iDir) != 0) {
                     return true;
                 }
             }
@@ -105,13 +110,13 @@ module.exports.create = function (spec) {
             if(!this.getNeighbor(x,y,dir)) return false;
             return this.set(x, y, this.get(x,y) | _DIR_MAP[dir]);
         },
-        connectUndirected: function(x, y, dir) {
+        connectUndirected: function(x, y, sDir) {
             // dir must be a string
-            if(!this.connect(x, y, dir)) { 
+            if(!this.connect(x, y, sDir)) { 
                 return false; 
             }
-            var n = this.getNeighbor(x, y, dir);
-            if(!this.connect( n.x, n.y, _OPPOSITE[dir])) {
+            var n = this.getNeighbor(x, y, sDir);
+            if(!this.connect( n.x, n.y, _OPPOSITE[sDir])) {
                 return false;
             }
             return true;

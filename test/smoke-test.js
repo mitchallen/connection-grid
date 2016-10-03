@@ -127,23 +127,17 @@ describe('module smoke test', function() {
     it('getNeighborDirs should return correct list', function(done) {
         var grid = _module.create({ x: 5, y: 5 });
         should.exist(grid);
-        let N = grid.N;
-        let S = grid.S;
-        let E = grid.E;
-        let W = grid.W;
-        grid.getNeighborDirs(1,1).should.eql([ N, S, E, W ]);
+        grid.getNeighborDirs(1,1).should.eql([ "N", "S", "E", "W" ]);
         done();
     });
 
-    it('getShuffledNeighborDirs should return correct list', function(done) {
+    it('getShuffledNeighborDirs should return shuffled list', function(done) {
         var grid = _module.create({ x: 5, y: 5 });
         should.exist(grid);
-        let N = grid.N;
-        let S = grid.S;
-        let E = grid.E;
-        let W = grid.W;
-        var shuffled = grid.getShuffledNeighborDirs(1,1);
-        console.log("shuffled: ", shuffled);
+        let tX = 1;
+        let tY = 2;
+        var shuffled = grid.getShuffledNeighborDirs(tX,tY);
+        shuffled.should.not.eql(grid.getNeighborDirs(tX,tY));
         done();
     });
 
@@ -184,10 +178,10 @@ describe('module smoke test', function() {
         let tX = 2;
         let tY = 3;
         let list = ["N","S","E","W"];
-        for(var dir = 0; dir < list.length; dir++ ) {
-            var cell = grid.getNeighbor(tX,tY,list[dir]);
+        for( var key in list ) {
+            var sDir = list[key];
+            var cell = grid.getNeighbor(tX,tY,sDir);
             should.exist(cell);
-            console.log(tX, tY, list[dir], cell);
             (cell.x >= tX - 1 && cell.x <= tX + 1).should.eql(true);
             (cell.y >= tY - 1 && cell.y <= tY + 1).should.eql(true);
         }
@@ -200,7 +194,8 @@ describe('module smoke test', function() {
         let tX = 0;
         let tY = 0;
         grid.connect(tX,tY,"S").should.eql(true);
-        grid.get(tX,tY).should.eql(grid.S);
+        let dirMap = grid.getDirMap();  
+        grid.get(tX,tY).should.eql(dirMap.S);
         done();
     });
 
@@ -210,11 +205,12 @@ describe('module smoke test', function() {
         let tX = 0;
         let tY = 0;
         let status = grid.connectUndirected(tX,tY,"S").should.eql(true);
-        grid.get(tX,tY).should.eql(grid.S);
+        let dirMap = grid.getDirMap();
+        grid.get(tX,tY).should.eql(dirMap.S);
         // Verify S neighbor points back to N neighbor
         var n = grid.getNeighbor(tX,tY,"S");
         should.exist(n);
-        grid.get(n.x,n.y).should.eql(grid.N);
+        grid.get(n.x,n.y).should.eql(dirMap.N);
         done();
     });
 });
