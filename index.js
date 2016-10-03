@@ -91,9 +91,11 @@ module.exports.create = function (spec) {
         hasConnections: function(x, y) {
             // Need to discount visited flag, etc
             let cell = this.get(x,y);
-            if(!cell) { return false; }
+            if(cell===null) { return false; }
+            if(cell===0) { return false;}
             let list = this.getNeighborDirs(x, y);
-            for(var sDir in list) {
+            for(var key in list) {
+                let sDir = list[key];
                 if(!this.isDir(sDir)) {
                     console.error("hasConnections unknown direction: ", sDir);
                     return false;
