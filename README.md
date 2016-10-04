@@ -174,4 +174,8 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 * added __connects__ method
 
+#### Version 0.1.3 
+
+* now uses @mitchallen/grid 0.1.6
+
 * * *

@@ -53,6 +53,22 @@ describe('module smoke test', function() {
         done();
     });
 
+    it('xSize should return size of x dimension', function(done) {
+        let sizeX = 5;
+        let sizeY = 6;
+        var grid = _module.create({ x: sizeX, y: sizeY });
+        grid.xSize.should.eql(sizeX);
+        done();
+    });
+
+    it('ySize should return size of y dimension', function(done) {
+        let sizeX = 5;
+        let sizeY = 6;
+        var grid = _module.create({ x: sizeX, y: sizeY });
+        grid.ySize.should.eql(sizeY);
+        done();
+    });
+
     it('isCell method with valid x and y parameters should return true', function(done) {
         let sizeX = 5;
         let sizeY = 5;
