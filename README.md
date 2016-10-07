@@ -71,8 +71,8 @@ Returns an object containing coordinates in the form of __{ x: *integer*, y: *in
 
     var coord = grid.getNeighbor(x,y,"N");
     
-	let nX = coord;
-	let nY = coord;
+	let nX = coord.x;
+	let nY = coord.y;
 
 ### list = object.getNeighborDirs( x, y )
 
@@ -133,8 +133,6 @@ Returns true if cell has a connection in the specified direction.
 Example:
 
 	if(grid.connects(2,2,"N")) ...
-
-* * *
 
 * * *
 
