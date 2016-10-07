@@ -251,4 +251,14 @@ describe('module smoke test', function() {
         grid.connects(tX,tY,"N").should.eql(false);
         done();
     });
+
+    it('isMasked should return true for a masked cell', function(done) {
+        var grid = _module.create({ x: 3, y: 3 });
+        should.exist(grid);
+        let tX = 0;
+        let tY = 0;
+        grid.mask(tX,tY).should.eql(true);
+        grid.isMasked(tX,tY).should.eql(true);
+        done();
+    });
 });

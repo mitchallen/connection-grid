@@ -92,13 +92,25 @@ Uses an internal bit flag to mark a cell as __visited__. This is useful in some 
 
 	grid.markVisited(0,0);
 
-### bool object.visited(x, y)
+### bool = object.visited(x, y)
 
 Returns true if the cell had been marked with a call to __markVisited__.
 
 	return grid.visited(0,0);
+	
+### bool = object.mask( x, y ) 
 
-### object.hasConnections(x, y) 
+Uses an internal bit flag to mark a cell as __masked__. This is useful in some applications, such as maze generation.  Will return false if x, y coordinate is not valid.
+
+	grid.mask(0,0);
+	
+### bool = object.isMasked(x, y)
+
+Returns true if the cell had been marked with a call to __mask__.
+
+	return grid.isMasked(0,0);
+
+### bool = object.hasConnections(x, y) 
 
 Will return true if the cell at x and y is connected to any other cell.  Will return false if x, y coordinate is not valid.
 
@@ -175,5 +187,9 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 #### Version 0.1.3 
 
 * now uses @mitchallen/grid 0.1.6
+
+#### Version 0.1.4
+
+* added __mask__ and __isMasked__ methods
 
 * * *

@@ -31,8 +31,7 @@ module.exports.create = function (spec) {
 
     // bit masks
     let VISITED = 0x01;
-    let START   = 0x02;
-    let GOAL    = 0x03;
+    let MASKED  = 0x02;
 
     let _DIR_MAP = { 
         "N": 0x010, 
@@ -87,6 +86,13 @@ module.exports.create = function (spec) {
         visited: function(x, y) {
             if(!this.isCell(x, y)) { return false; }
             return ( ( this.get(x,y) & VISITED ) !== 0 );
+        },
+        mask: function( x, y )  {
+            return this.set( x,y, this.get(x,y) | MASKED );
+        },
+        isMasked: function( x, y )  {
+            if(!this.isCell(x, y)) { return false; }
+            return ( ( this.get(x,y) & MASKED ) !== 0 );
         },
         hasConnections: function(x, y) {
             // Need to discount visited flag, etc
