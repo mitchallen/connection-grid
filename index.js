@@ -61,6 +61,10 @@ module.exports.create = function (spec) {
             }
             return false;
         },
+        getOppositeDir: function(dir) {
+            if(!this.isDir(dir)) { return null; }
+            return _OPPOSITE[dir];
+        },
         getNeighbor: function(x, y, dir) {
             if(!this.isCell(x, y)) { return null; }
             // dir must be string and in dirmap

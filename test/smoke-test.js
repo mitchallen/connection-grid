@@ -261,4 +261,19 @@ describe('module smoke test', function() {
         grid.isMasked(tX,tY).should.eql(true);
         done();
     });
+
+    it('getOppositeDir should return opposite neighbor', function(done) {
+        var grid = _module.create({ x: 5, y: 5 });
+        should.exist(grid);
+        let tX = 2;
+        let tY = 3;
+        let list = ["N","S","E","W"];
+        let opps = ["S","N","W","E"];
+        for( var key in list ) {
+            var sDir = list[key];
+            var oDir = grid.getOppositeDir(sDir);
+            oDir.should.eql(opps[key]);
+        }
+        done();
+    });
 });

@@ -60,6 +60,17 @@ Returns a map of the internal direction bit flags.  The flags can be either __N_
 Will return true if __dir__ is one of these strings: __"N"__, __"E"__, __"S"__, or __"W"__; 
 
 	if(isDir("N")) ...
+	
+### oDir = object.getOppositeDir(dir)
+
+Returns opposite direction of __*dir*__. Will return null for an invalid parameter.
+
+* __dir__ - can be "N", "E", "S", or "W";
+
+Returns an string containing opposite direction of __*dir*__ parameter.
+
+    var oDir = grid.getOppositeDir(x,y,"N");
+	oDir.should.eql("S");
 
 ### coord = object.getNeighbor(x, y, dir)
 
@@ -191,5 +202,9 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 #### Version 0.1.4
 
 * added __mask__ and __isMasked__ methods
+
+#### Version 0.1.5
+
+* added __getOppositeDir__ method
 
 * * *
