@@ -36,21 +36,23 @@ describe('create method', function() {
         done();
     });
 
-    it('should return null when missing spec parameter', function(done) {
+    it('should return obj when missing spec parameter', function(done) {
         var obj = _module.create();
-        should.not.exist(obj);
+        should.exist(obj);
         done();
     });
 
-    it('should return null when called no spec x parameter', function(done) {
+    it('should return object when called no spec x parameter', function(done) {
         var obj = _module.create({ y: 5 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.xSize.should.eql(0);
         done();
     });
 
-    it('should return null when called no spec y parameter', function(done) {
+    it('should return object when called no spec y parameter', function(done) {
         var obj = _module.create({ x: 5 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.ySize.should.eql(0);
         done();
     });
 
@@ -62,19 +64,23 @@ describe('create method', function() {
 
     it('should return null when called with x and y spec parameters set to zero (0) ', function(done) {
         var obj = _module.create({ x: 0, y: 0 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.xSize.should.eql(0);
+        obj.ySize.should.eql(0);
         done();
     });
 
     it('should return null when called with a spec x parameter set to zero (0)', function(done) {
         var obj = _module.create({ x: 0, y: 1 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.xSize.should.eql(0);
         done();
     });
 
-    it('should return null when called with a spec y parameter set to zero (0)', function(done) {
+    it('should return object when called with a spec y parameter set to zero (0)', function(done) {
         var obj = _module.create({ x: 1, y: 0 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.ySize.should.eql(0);
         done();
     });
 
@@ -84,21 +90,25 @@ describe('create method', function() {
         done();
     });
 
-    it('should return null when called with x and y set to negative value', function(done) {
+    it('should return object when called with x and y set to negative value', function(done) {
         var obj = _module.create({ x: -1, y: -1 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.xSize.should.eql(0);
+        obj.ySize.should.eql(0);
         done();
     });
 
-    it('should return null when called with x set to negative value', function(done) {
+    it('should return object when called with x set to negative value', function(done) {
         var obj = _module.create({ x: -1, y: 1 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.xSize.should.eql(0);
         done();
     });
 
-    it('should return null when called with y set to negative value', function(done) {
+    it('should return object when called with y set to negative value', function(done) {
         var obj = _module.create({ x: 1, y: -1 });
-        should.not.exist(obj);
+        should.exist(obj);
+        obj.ySize.should.eql(0);
         done();
     });
 });

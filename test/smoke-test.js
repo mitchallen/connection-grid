@@ -41,9 +41,9 @@ describe('module smoke test', function() {
         done();
     });
 
-    it('create method with no spec should return null', function(done) {
+    it('create method with no spec should return object', function(done) {
         var grid = _module.create();
-        should.not.exist(grid);
+        should.exist(grid);
         done();
     });
 
