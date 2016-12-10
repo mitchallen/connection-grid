@@ -47,11 +47,11 @@ You can call create multiple times to create multiple connection grids.
 
     if(!grid1 || !grid2) ...
     
-### list = object.getDirMap()
+### list = object.dirMap
 
 Returns a map of the internal direction bit flags.  The flags can be either __N__, __E__, __W__, or __S__.
 
-    let dirMap = grid.getDirMap();
+    let dirMap = grid.dirMap;
     
 	if(dirMap.N == ... )
 
@@ -183,28 +183,45 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
-#### Version 0.1.0 
+#### Version 0.1.6
 
-* initial release
+* added replaced __getDirMap__ function with __dirMap__ property
 
-#### Version 0.1.1 
+#### Version 0.1.5
 
-* fixed bug in __hasConnections__
+* added __getOppositeDir__ method
 
-#### Version 0.1.2 
+#### Version 0.1.5
 
-* added __connects__ method
-
-#### Version 0.1.3 
-
-* now uses @mitchallen/grid 0.1.6
+* added __getOppositeDir__ method
 
 #### Version 0.1.4
 
 * added __mask__ and __isMasked__ methods
 
-#### Version 0.1.5
+#### Version 0.1.3 
 
-* added __getOppositeDir__ method
+* now uses @mitchallen/grid 0.1.6
+
+#### Version 0.1.2 
+
+* added __connects__ method
+
+#### Version 0.1.1 
+
+* fixed bug in __hasConnections__
+
+#### Version 0.1.0 
+
+* initial release
+
+
+
+
+
+
+
+
+
 
 * * *

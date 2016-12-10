@@ -59,9 +59,6 @@ module.exports.create = (spec) => {
 
     return Object.assign( _grid, {
 
-        // getDirMap: function() {
-        //     return _DIR_MAP;
-        // },
         isDir: function(dir) {
             if(typeof dir === 'string') {
                 return(_DIR_MAP[dir]!==null);
