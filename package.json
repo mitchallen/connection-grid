@@ -1,6 +1,6 @@
 {
   "name": "@mitchallen/connection-grid",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "map connections between cells in a 2D grid",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
     "supertest": "^2.0.0"
   },
   "dependencies": {
-    "@mitchallen/grid": "^0.1.7",
+    "@mitchallen/grid": "^0.1.8",
     "@mitchallen/shuffle": "^0.1.0"
   }
 }
