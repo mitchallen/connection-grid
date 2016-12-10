@@ -191,7 +191,8 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * now uses @mitchallen/grid 0.1.9
 * changed internal use of __grid.create__ to __grid.Square__
 * added __Square__ method to replace __create__ method
-* __create__ method not generate deprecation warning
+* added test suites for __Square__ method
+* __create__ method now generates deprecation warning
 
 #### Version 0.1.8
 
