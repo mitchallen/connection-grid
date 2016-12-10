@@ -3,6 +3,7 @@
     Author: Mitch Allen
 */
 
+/*jshint node: true */
 /*jshint esversion: 6 */
 
 "use strict";
@@ -10,15 +11,12 @@
 var gridFactory = require("@mitchallen/grid"),
     shuffleFactory = require("@mitchallen/shuffle");
 
-module.exports.create = function (spec) {
-    if(!spec) {
-        return null;
-    }
-    if(!spec.x || !spec.y) {
-        return null;
-    }
-    let _x = spec.x;
-    let _y = spec.y;
+module.exports.create = (spec) => {
+
+    spec = spec || {};
+    let _x = spec.x || 0;
+    let _y = spec.y || 0;
+    
     let _gridSpec = {
         x: _x,
         y: _y
