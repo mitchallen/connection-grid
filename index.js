@@ -16,7 +16,7 @@ module.exports.create = (spec) => {
     spec = spec || {};
     let _x = spec.x || 0;
     let _y = spec.y || 0;
-    
+
     let _gridSpec = {
         x: _x,
         y: _y
@@ -47,12 +47,21 @@ module.exports.create = (spec) => {
     let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
     let _OPPOSITE = { "E": "W", "W": "E", "N": "S", "S": "N" };
 
+    Object.defineProperties( _grid, {
+        "dirMap": {
+            writeable: false,
+            value: _DIR_MAP,
+            enumerable: true,
+            configurable: true
+        },
+    });
+
 
     return Object.assign( _grid, {
 
-        getDirMap: function() {
-            return _DIR_MAP;
-        },
+        // getDirMap: function() {
+        //     return _DIR_MAP;
+        // },
         isDir: function(dir) {
             if(typeof dir === 'string') {
                 return(_DIR_MAP[dir]!==null);

@@ -212,7 +212,7 @@ describe('module smoke test', function() {
         let tX = 0;
         let tY = 0;
         grid.connect(tX,tY,"S").should.eql(true);
-        let dirMap = grid.getDirMap();  
+        let dirMap = grid.dirMap;  
         grid.get(tX,tY).should.eql(dirMap.S);
         done();
     });
@@ -223,7 +223,7 @@ describe('module smoke test', function() {
         let tX = 0;
         let tY = 0;
         let status = grid.connectUndirected(tX,tY,"S").should.eql(true);
-        let dirMap = grid.getDirMap();
+        let dirMap = grid.dirMap;
         grid.get(tX,tY).should.eql(dirMap.S);
         // Verify S neighbor points back to N neighbor
         var n = grid.getNeighbor(tX,tY,"S");
