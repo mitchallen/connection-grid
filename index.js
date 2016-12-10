@@ -21,7 +21,7 @@ module.exports.create = (spec) => {
         x: _x,
         y: _y
     };
-    var _grid = gridFactory.create(_gridSpec);
+    var _grid = gridFactory.Square(_gridSpec);
     if(!_grid) {
         return null;
     }
@@ -55,7 +55,6 @@ module.exports.create = (spec) => {
             configurable: true
         },
     });
-
 
     return Object.assign( _grid, {
 
