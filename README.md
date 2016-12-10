@@ -21,7 +21,7 @@ You must use __npm__ __2.7.0__ or higher because of the scoped package name.
 	let xSize = 5;
 	let ySize = 6;
 
-    var grid = gridFactory.create({ x: xSize, y: ySize });
+    var grid = gridFactory.Square({ x: xSize, y: ySize });
     
 * * *
 
@@ -31,22 +31,26 @@ For additional methods, see the documentation for the base class: __[@mitchallen
 
 ### gridFactory = factory.create(spec)
 
-Factory method that returns a connected grid object. This overrides the __create__ method in the base class.
+The __create__ method is deprecated. Use __Square__ instead.
+
+### gridFactory = factory.Square(spec)
+
+Factory method that returns a connected grid object. This overrides the __Square__ method in the base class.
 
 It takes one spec parameter that must be an object with x and y values specifying the size of the connection grid.
 
-Create x and y size parameter that are missing or less than 0 will be normalized to 0.
+If the x and y size parameterst are missing or less than 0 they will be normalized to 0.
 
-You can call create multiple times to create multiple connection grids.
+You can call Square multiple times to create multiple connection grids.
 
     var gridFactory = require("@mitchallen/connection-grid");
 
-    var grid1 = gridFactory.create( { x: 5, y: 10 } );
-    var grid2 = gridFactory.create( { x: 7, y: 20 } );
+    var grid1 = gridFactory.Square( { x: 5, y: 10 } );
+    var grid2 = gridFactory.Square( { x: 7, y: 20 } );
 
     if(!grid1 || !grid2) ...
     
-### list = object.dirMap
+### Square list = object.dirMap
 
 Returns a map of the internal direction bit flags.  The flags can be either __N__, __E__, __W__, or __S__.
 
@@ -54,13 +58,13 @@ Returns a map of the internal direction bit flags.  The flags can be either __N_
     
 	if(dirMap.N == ... )
 
-### list = object.isDir(dir)
+### Square list = object.isDir(dir)
 
 Will return true if __dir__ is one of these strings: __"N"__, __"E"__, __"S"__, or __"W"__; 
 
 	if(isDir("N")) ...
 	
-### oDir = object.getOppositeDir(dir)
+### Square oDir = object.getOppositeDir(dir)
 
 Returns opposite direction of __*dir*__. Will return null for an invalid parameter.
 
@@ -71,7 +75,7 @@ Returns an string containing opposite direction of __*dir*__ parameter.
     var oDir = grid.getOppositeDir(x,y,"N");
 	oDir.should.eql("S");
 
-### coord = object.getNeighbor(x, y, dir)
+### Square coord = object.getNeighbor(x, y, dir)
 
 Returns the zero-based coordinates of the immediate neighbor of a cell. Will return null if the neighbor would be out of range for the grid.
 
@@ -84,49 +88,49 @@ Returns an object containing coordinates in the form of __{ x: *integer*, y: *in
 	let nX = coord.x;
 	let nY = coord.y;
 
-### list = object.getNeighborDirs( x, y )
+### Square list = object.getNeighborDirs( x, y )
 
 Returns a list containing the directions of all neighbors. The list contains the internal bit flag values.
     
     grid.getNeighborDirs(1,1).should.eql([ "N", "S", "E", "W"  ]);
 
-### list = object.getShuffledNeighborDirs( x, y )
+### Square list = object.getShuffledNeighborDirs( x, y )
 
 Returns a shuffled list containing the directions of all neighbors. The list is in the form of strings (example: [ "W", "N", "E", "S" ]).
 
     let list = grid.getShuffledNeighborDirs( x, y );
 
-### bool = object.markVisited( x, y ) 
+### Square bool = object.markVisited( x, y ) 
 
 Uses an internal bit flag to mark a cell as __visited__. This is useful in some applications, such as maze generation.  Will return false if x, y coordinate is not valid.
 
 	grid.markVisited(0,0);
 
-### bool = object.visited(x, y)
+### Square bool = object.visited(x, y)
 
 Returns true if the cell had been marked with a call to __markVisited__.
 
 	return grid.visited(0,0);
 	
-### bool = object.mask( x, y ) 
+### Square bool = object.mask( x, y ) 
 
 Uses an internal bit flag to mark a cell as __masked__. This is useful in some applications, such as maze generation.  Will return false if x, y coordinate is not valid.
 
 	grid.mask(0,0);
 	
-### bool = object.isMasked(x, y)
+### Square bool = object.isMasked(x, y)
 
 Returns true if the cell had been marked with a call to __mask__.
 
 	return grid.isMasked(0,0);
 
-### bool = object.hasConnections(x, y) 
+### Square bool = object.hasConnections(x, y) 
 
 Will return true if the cell at x and y is connected to any other cell.  Will return false if x, y coordinate is not valid.
 
 	if(grid.hasConnections(x, y)) ...
 
-### bool = object.connect( x, y, dir )
+### Square bool = object.connect( x, y, dir )
 
 Marks a connection from the current cell to a neighbor cell. Will return false if x, y coordinate or direction is not valid. Only marks a connection in one direction.  Cell A connected to Cell B doesn't necessarily mean that Cell B is connected to Cell A. To connect in both directions see __connectUndirected__.
 
@@ -136,7 +140,7 @@ Example:
 
 	if(grid.connect(2,2,"N")) ...
 
-### object.connectUndirected(x, y, dir)
+### Square object.connectUndirected(x, y, dir)
 
 Marks a connection from the current cell to a neighbor cell *and back again*. Will return false if x, y coordinate or direction is not valid. Marks a connection in one direction. Cell A connected to Cell B also results in Cell B being marked as connected to Cell A. It's the same as calling __connect__ once from each cell and reversing the direction.
 
@@ -146,7 +150,7 @@ Example:
 
 	if(grid.connectUndirected(2,2,"N")) ...
 
-### object.connects(x, y, dir)
+### Square object.connects(x, y, dir)
 
 Returns true if cell has a connection in the specified direction.
 
@@ -186,6 +190,8 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 * now uses @mitchallen/grid 0.1.9
 * changed internal use of __grid.create__ to __grid.Square__
+* added __Square__ method to replace __create__ method
+* __create__ method not generate deprecation warning
 
 #### Version 0.1.8
 

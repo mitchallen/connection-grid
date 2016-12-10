@@ -1,6 +1,6 @@
 /**
     Module: @mitchallen/grid
-      Test: has-connections-test
+      Test: square-has-connections-test
     Author: Mitch Allen
 */
 
@@ -10,7 +10,7 @@ var request = require('supertest'),
     should = require('should'),
     modulePath = "../index";
 
-describe('hasConnections', function() {
+describe('Square hasConnetions', function() {
 
     var _module = null;
 
@@ -37,7 +37,7 @@ describe('hasConnections', function() {
     });
 
     it('should return false when nothing connected', function(done) {
-        var grid = _module.create({ x: 3, y: 3 });
+        var grid = _module.Square({ x: 3, y: 3 });
         should.exist(grid);
         let tX = 0;
         let tY = 0;
@@ -46,7 +46,7 @@ describe('hasConnections', function() {
     });
 
     it('marked should return false when nothing connected and marked visited', function(done) {
-        var grid = _module.create({ x: 3, y: 3 });
+        var grid = _module.Square({ x: 3, y: 3 });
         should.exist(grid);
         let tX = 0;
         let tY = 0;
@@ -56,7 +56,7 @@ describe('hasConnections', function() {
     });
 
     it('should return true when connected', function(done) {
-        var grid = _module.create({ x: 3, y: 3 });
+        var grid = _module.Square({ x: 3, y: 3 });
         should.exist(grid);
         let tX = 0;
         let tY = 0;
@@ -67,7 +67,7 @@ describe('hasConnections', function() {
 
 
     it('should return true when connected and marked visited', function(done) {
-        var grid = _module.create({ x: 3, y: 3 });
+        var grid = _module.Square({ x: 3, y: 3 });
         should.exist(grid);
         let tX = 0;
         let tY = 0;

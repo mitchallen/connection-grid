@@ -11,7 +11,7 @@
 var gridFactory = require("@mitchallen/grid"),
     shuffleFactory = require("@mitchallen/shuffle");
 
-module.exports.create = (spec) => {
+var baseGrid = (spec) => {
 
     spec = spec || {};
     let _x = spec.x || 0;
@@ -148,4 +148,18 @@ module.exports.create = (spec) => {
             return((cell & iDir) !== 0);
         }
     });
+};
+
+var createGrid = (spec) => {
+    console.warn("@mitchallen/grid: .create is deprecated. Use .Square instead.");
+    return squareGrid( spec );
+};
+
+var squareGrid = (spec) => {
+    return baseGrid( spec );
+};
+
+module.exports = {
+    create: createGrid,
+    Square: squareGrid
 };
