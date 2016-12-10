@@ -35,9 +35,8 @@ Factory method that returns a connected grid object. This overrides the __create
 
 It takes one spec parameter that must be an object with x and y values specifying the size of the connection grid.
 
-The x and y size values can not be less than one (1).
+Create x and y size parameter that are missing or less than 0 will be normalized to 0.
 
-The method will return null if create fails, such as with bad parameters.
 You can call create multiple times to create multiple connection grids.
 
     var gridFactory = require("@mitchallen/connection-grid");
@@ -182,6 +181,12 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.7 
+
+* now uses @mitchallen/grid 0.1.7
+* x and y values that are missing or less than 0 will be normalized to 0
+* updated tests 
 
 #### Version 0.1.6
 
