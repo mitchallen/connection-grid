@@ -182,6 +182,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.8
+
+* now uses @mitchallen/grid 0.1.8
+
 #### Version 0.1.7 
 
 * now uses @mitchallen/grid 0.1.7
