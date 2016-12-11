@@ -186,6 +186,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.10
+
+* now uses @mitchallen/grid 0.1.10
+
 #### Version 0.1.9
 
 * now uses @mitchallen/grid 0.1.9
@@ -197,6 +201,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 #### Version 0.1.8
 
 * now uses @mitchallen/grid 0.1.8
+* added experimental __Hexagon__ method
 
 #### Version 0.1.7 
 
