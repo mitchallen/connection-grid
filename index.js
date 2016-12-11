@@ -14,38 +14,23 @@ var gridFactory = require("@mitchallen/grid"),
 var baseGrid = (spec) => {
 
     spec = spec || {};
-    let _x = spec.x || 0;
-    let _y = spec.y || 0;
+    var _grid = spec.grid;
+    var _DIR_MAP = spec.dirMap || {};
 
-    let _gridSpec = {
-        x: _x,
-        y: _y
-    };
-    var _grid = gridFactory.Square(_gridSpec);
+    // Default square configuration
+    // TODO - get from Square
+    let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
+    let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
+    let _OPPOSITE = { "E": "W", "W": "E", "N": "S", "S": "N" };
+
     if(!_grid) {
         return null;
     }
-    _grid.fill(0);
 
     // bit masks
     let VISITED = 0x01;
     let MASKED  = 0x02;
 
-    let _DIR_MAP = { 
-        "N": 0x010, 
-        "S": 0x020, 
-        "E": 0x040, 
-        "W": 0x080 };
-
-    // let NW = 0x100
-    // let NE = 0x200
-    // let SW = 0x400
-    // let SE = 0x800
-
-    // Default square configuration
-    let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
-    let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
-    let _OPPOSITE = { "E": "W", "W": "E", "N": "S", "S": "N" };
 
     Object.defineProperties( _grid, {
         "dirMap": {
@@ -156,7 +141,37 @@ var createGrid = (spec) => {
 };
 
 var squareGrid = (spec) => {
-    return baseGrid( spec );
+
+    spec = spec || {};
+    let _x = spec.x || 0;
+    let _y = spec.y || 0;
+
+    var _grid = gridFactory.Square({
+        x: _x,
+        y: _y
+    });
+
+    if(!_grid) {
+        return null;
+    }
+
+    _grid.fill(0);
+
+    var _dirMap = { 
+            "N": 0x010, 
+            "S": 0x020, 
+            "E": 0x040, 
+            "W": 0x080 };
+    // For Hexagon.
+    // let NW = 0x100
+    // let NE = 0x200
+    // let SW = 0x400
+    // let SE = 0x800
+
+    return baseGrid( {
+        grid: _grid,
+        dirMap: _dirMap
+    });
 };
 
 module.exports = {
