@@ -299,10 +299,10 @@ var circleGrid = (spec) => {
             var rSize = this.ringSize(ring);
             var tSize = this.ringSize(ring - 1);
 
-            if( rSize == tSize ) {
+            if( rSize === tSize ) {
                 // | * |
                 // | T |
-                if( aSize == 0 ) {
+                if( aSize === 0 ) {
                     // Current ring is outer ring
                     // | CCW | * | CW |
                     //       | T |
@@ -324,7 +324,7 @@ var circleGrid = (spec) => {
             if( pos % 2 === 0 ) {
                  // | * |  |
                  // | T0   |
-                if( aSize == 0 ) {
+                if( aSize === 0 ) {
                     // | CCW | * | CW |
                     //       | T0     |
                     return ["CCW", "CW", "T0" ];
@@ -343,7 +343,7 @@ var circleGrid = (spec) => {
 
             // |   | *  |
             // |     T1 |
-            if( aSize == 0 ) {
+            if( aSize === 0 ) {
                 // | CCW | * | CW |
                 // |      T1 |
                 return ["CCW", "CW", "T1" ];
@@ -371,15 +371,15 @@ var circleGrid = (spec) => {
             switch(dir) {
                 case "CCW":
                     nr = ring;
-                    np = pos == 0 ? ringSize - 1 : pos - 1;
+                    np = pos === 0 ? ringSize - 1 : pos - 1;
                     break;
                 case "CW":
                     nr = ring;
-                    np = pos == ringSize ? 0 : pos + 1;
+                    np = pos === ringSize ? 0 : pos + 1;
                     break;
                 case "A":
                     if( ring >= ringSize ) {
-                        conole.error("A neighbor set for outerring");
+                        console.error("A neighbor set for outerring");
                         return;
                     }
                     nr = ring + 1;
@@ -387,7 +387,7 @@ var circleGrid = (spec) => {
                     break;
                 case "A0":
                     if( ring >= ringSize ) {
-                        conole.error("A0 neighbor set for outerring");
+                        console.error("A0 neighbor set for outerring");
                         return;
                     }
                     nr = ring + 1;
@@ -395,31 +395,31 @@ var circleGrid = (spec) => {
                     break;
                 case "A1":
                     if( ring >= ringSize ) {
-                        conole.error("A1 neighbor set for outerring");
+                        console.error("A1 neighbor set for outerring");
                         return;
                     }
                     nr = ring + 1;
                     np = pos * 2 + 1;
                     break;
                 case "T":
-                    if( ring == 0 ) {
-                        conole.error("T neighbor set for center");
+                    if( ring === 0 ) {
+                        console.error("T neighbor set for center");
                         return;
                     }
                     nr = ring - 1;
                     np = pos;
                     break;
                 case "T0":
-                    if( ring == 0 ) {
-                        conole.error("T0 neighbor set for center");
+                    if( ring === 0 ) {
+                        console.error("T0 neighbor set for center");
                         return;
                     }
                     nr = ring - 1;
                     np = pos / 2;
                     break;
                 case "T0":
-                    if( ring == 0 ) {
-                        conole.error("T0 neighbor set for center");
+                    if( ring === 0 ) {
+                        console.error("T0 neighbor set for center");
                         return;
                     }
                     nr = ring - 1;
