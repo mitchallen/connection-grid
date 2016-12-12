@@ -144,7 +144,21 @@ describe('Circle smoke test', function() {
         let rings = 5;
         var grid = _module.Circle({ rings: rings });
         should.exist(grid);
-        grid.getNeighborDirs(1,1).should.eql([ 'CCW', 'CW', 'A0', 'A1', 'T1' ]);
+        grid.getNeighborDirs(0,0).should.eql([ 'A0' ]);
+        // Ring 1
+        grid.getNeighborDirs(1,0).should.eql([ 'CCW', 'CW', 'A0', 'A1', 'T0' ]);
+        // Ring 0 should only return T for Position 0
+        grid.getNeighborDirs(1,1).should.eql([ 'CCW', 'CW', 'A0', 'A1' ]);
+        grid.getNeighborDirs(1,2).should.eql([ 'CCW', 'CW', 'A0', 'A1' ]);
+        // Ring 2
+        grid.getNeighborDirs(2,0).should.eql([ 'CCW', 'CW', 'A0', 'A1', 'T0' ]);
+        grid.getNeighborDirs(2,1).should.eql([ 'CCW', 'CW', 'A0', 'A1', 'T1' ]);
+        // Ring 3
+        grid.getNeighborDirs(3,0).should.eql([ 'CCW', 'CW', 'A', 'T0' ]);
+        grid.getNeighborDirs(3,1).should.eql([ 'CCW', 'CW', 'A', 'T1' ]);
+        // Ring 4
+        grid.getNeighborDirs(4,0).should.eql([ 'CCW', 'CW', 'T' ]);
+        grid.getNeighborDirs(4,1).should.eql([ 'CCW', 'CW', 'T' ]);
         done();
     });
 
@@ -156,7 +170,7 @@ describe('Circle smoke test', function() {
         let pos = 2;
         var shuffled = grid.getShuffledNeighborDirs(ring,pos);
         console.log(shuffled);
-        shuffled.length.should.eql(5);
+        shuffled.length.should.eql(4);
         // Now and then it does return same list ...
         // shuffled.should.not.eql(grid.getNeighborDirs(tX,tY));
         done();

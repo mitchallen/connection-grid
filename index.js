@@ -292,7 +292,12 @@ var circleGrid = (spec) => {
             if( ring === 0 && pos === 0 ) {
                 // one neighbor, away from center.
                 // center may be expanded to have more than one as an option
-                return ["A"];
+                return ["A0"];
+            }
+
+            if( ring === 1 && pos !== 0 ) {
+                // Ring 1 - only let 0 connect to center (for now)
+                return ["CCW", "CW", "A0", "A1" ];
             }
 
             var aSize = this.ringSize(ring + 1);    // 0 means current ring is outer
