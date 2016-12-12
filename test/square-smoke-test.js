@@ -265,8 +265,6 @@ describe('Square smoke test', function() {
     it('getOppositeDir should return opposite neighbor', function(done) {
         var grid = _module.Square({ x: 5, y: 5 });
         should.exist(grid);
-        let tX = 2;
-        let tY = 3;
         let list = ["N","S","E","W"];
         let opps = ["S","N","W","E"];
         for( var key in list ) {
