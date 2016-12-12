@@ -186,6 +186,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.11
+
+* Added __Hexagon__ and __Circle__ methods
+
 #### Version 0.1.10
 
 * now uses @mitchallen/grid 0.1.10
