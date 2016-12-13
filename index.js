@@ -15,7 +15,7 @@ var gridFactory = require("@mitchallen/grid"),
     circleGrid = require('./lib/circle');
 
 var createGrid = (spec) => {
-    console.warn("@mitchallen/grid: .create is deprecated. Use .Square instead.");
+    console.warn("@mitchallen/connection-grid: .create is deprecated. Use .Square instead.");
     return squareGrid( spec );
 };
 
