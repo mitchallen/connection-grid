@@ -1,6 +1,6 @@
 {
   "name": "@mitchallen/connection-grid",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "map connections between cells in a 2D grid",
   "main": "index.js",
   "scripts": {
