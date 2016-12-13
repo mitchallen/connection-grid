@@ -186,6 +186,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.13
+
+* Refactored code base and tests
+
 #### Version 0.1.12
 
 * Added tests for __Circle__
