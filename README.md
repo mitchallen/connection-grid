@@ -50,6 +50,8 @@ You can call Square multiple times to create multiple connection grids.
 
     if(!grid1 || !grid2) ...
     
+
+    
 ### Square list = object.dirMap
 
 Returns a map of the internal direction bit flags.  The flags can be either __N__, __E__, __W__, or __S__.
@@ -185,6 +187,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.15
+
+* Added __Triangle__ method
 
 #### Version 0.1.14
 
