@@ -140,6 +140,21 @@ describe('Circle smoke test', function() {
         done();
     });
 
+    it('getNeighborDirs should return true for valid values', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        grid.isDir("CCW").should.eql(true);
+        grid.isDir("CW").should.eql(true);
+        grid.isDir("A").should.eql(true);
+        grid.isDir("T").should.eql(true);
+        grid.isDir("A0").should.eql(true);
+        grid.isDir("T0").should.eql(true);
+        grid.isDir("A1").should.eql(true);
+        grid.isDir("T1").should.eql(true);
+        done();
+    });
+
     it('getNeighborDirs should return correct list', function(done) {
         let rings = 5;
         var grid = _module.Circle({ rings: rings });
