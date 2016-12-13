@@ -1,6 +1,6 @@
 /**
     Module: @mitchallen/grid
-      Test: square-get-test
+      Test: get-test
     Author: Mitch Allen
 */
 
@@ -8,9 +8,9 @@
 
 var request = require('supertest'),
     should = require('should'),
-    modulePath = "../index";
+    modulePath = "../../index";
 
-describe('Square get method', function() {
+describe('get method', function() {
 
     var _module = null;
 
@@ -37,7 +37,7 @@ describe('Square get method', function() {
     });
 
     it('should return value when called with valid x and y parameters', function(done) {
-        var obj = _module.Square({ x: 1, y: 1 });
+        var obj = _module.create({ x: 1, y: 1 });
         should.exist(obj);
         let tX = 0;
         let tY = 0;
@@ -52,7 +52,7 @@ describe('Square get method', function() {
     it('should return value when called with x and y parameters set to size minus one', function(done) {
         let sizeX = 20;
         let sizeY = 10;
-        var obj = _module.Square({ x: sizeX, y: sizeY });
+        var obj = _module.create({ x: sizeX, y: sizeY });
         should.exist(obj);
         let tX = sizeX-1;
         let tY = sizeY-1;
@@ -67,7 +67,7 @@ describe('Square get method', function() {
     it('should return negative value', function(done) {
         let sizeX = 20;
         let sizeY = 10;
-        var obj = _module.Square({ x: sizeX, y: sizeY });
+        var obj = _module.create({ x: sizeX, y: sizeY });
         should.exist(obj);
         let tX = sizeX-1;
         let tY = sizeY-1;
@@ -82,7 +82,7 @@ describe('Square get method', function() {
     it('should return string', function(done) {
         let sizeX = 20;
         let sizeY = 10;
-        var obj = _module.Square({ x: sizeX, y: sizeY });
+        var obj = _module.create({ x: sizeX, y: sizeY });
         should.exist(obj);
         let tX = sizeX-1;
         let tY = sizeY-1;
@@ -97,7 +97,7 @@ describe('Square get method', function() {
     it('should return object', function(done) {
         let sizeX = 20;
         let sizeY = 10;
-        var obj = _module.Square({ x: sizeX, y: sizeY });
+        var obj = _module.create({ x: sizeX, y: sizeY });
         should.exist(obj);
         let tX = sizeX-1;
         let tY = sizeY-1;
@@ -115,7 +115,7 @@ describe('Square get method', function() {
     it('should return date', function(done) {
         let sizeX = 20;
         let sizeY = 10;
-        var obj = _module.Square({ x: sizeX, y: sizeY });
+        var obj = _module.create({ x: sizeX, y: sizeY });
         should.exist(obj);
         let tX = sizeX-1;
         let tY = sizeY-1;
@@ -130,7 +130,7 @@ describe('Square get method', function() {
     it('should return function', function(done) {
         let sizeX = 20;
         let sizeY = 10;
-        var obj = _module.Square({ x: sizeX, y: sizeY });
+        var obj = _module.create({ x: sizeX, y: sizeY });
         should.exist(obj);
         let tX = sizeX-1;
         let tY = sizeY-1;

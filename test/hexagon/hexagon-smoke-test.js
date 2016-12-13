@@ -8,7 +8,7 @@
 
 var request = require('supertest'),
     should = require('should'),
-    modulePath = "../index";
+    modulePath = "../../index";
 
 describe('Hexagon smoke test', function() {
 

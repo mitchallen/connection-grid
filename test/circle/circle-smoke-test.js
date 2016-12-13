@@ -8,7 +8,7 @@
 
 var request = require('supertest'),
     should = require('should'),
-    modulePath = "../index";
+    modulePath = "../../index";
 
 describe('Circle smoke test', function() {
 
@@ -146,8 +146,8 @@ describe('Circle smoke test', function() {
         should.exist(grid);
         grid.getNeighborDirs(0,0).should.eql([ 'A0' ]);
         // Ring 1
+        // Ring 1 should only return T for Position 0
         grid.getNeighborDirs(1,0).should.eql([ 'CCW', 'CW', 'A0', 'A1', 'T0' ]);
-        // Ring 0 should only return T for Position 0
         grid.getNeighborDirs(1,1).should.eql([ 'CCW', 'CW', 'A0', 'A1' ]);
         grid.getNeighborDirs(1,2).should.eql([ 'CCW', 'CW', 'A0', 'A1' ]);
         // Ring 2

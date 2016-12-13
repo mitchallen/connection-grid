@@ -1,6 +1,6 @@
 /**
     Module: @mitchallen/grid
-      Test: square-clone-array-test
+      Test: clone-array-test
     Author: Mitch Allen
 */
 
@@ -8,9 +8,9 @@
 
 var request = require('supertest'),
     should = require('should'),
-    modulePath = "../index";
+    modulePath = "../../index";
 
-describe('Square cloneArray method', function() {
+describe('cloneArray method', function() {
 
     var _module = null;
 
@@ -39,7 +39,7 @@ describe('Square cloneArray method', function() {
    it('should return a clone of the internal array', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.Square({ x: xSize, y: ySize });
+        var obj = _module.create({ x: xSize, y: ySize });
         should.exist(obj);
         let fillValue = 999;
         obj.fill(fillValue);
@@ -57,7 +57,7 @@ describe('Square cloneArray method', function() {
     it('return should not be reference to original', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.Square({ x: xSize, y: ySize });
+        var obj = _module.create({ x: xSize, y: ySize });
         should.exist(obj);
         let fillValue = 999;
         obj.fill(fillValue);
@@ -77,7 +77,7 @@ describe('Square cloneArray method', function() {
     });
 
     it('should return a clone of the internal array for a one by one grid', function(done) {
-        var obj = _module.Square({ x: 1, y: 1 });
+        var obj = _module.create({ x: 1, y: 1 });
         should.exist(obj);
         let tX = 0;
         let tY = 0;
@@ -92,7 +92,7 @@ describe('Square cloneArray method', function() {
     it('should return matching string objects', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.Square({ x: xSize, y: ySize });
+        var obj = _module.create({ x: xSize, y: ySize });
         should.exist(obj);
         let tX = xSize - 1;
         let tY = ySize - 1;
@@ -108,7 +108,7 @@ describe('Square cloneArray method', function() {
     it('should return matching objects', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.Square({ x: xSize, y: ySize });
+        var obj = _module.create({ x: xSize, y: ySize });
         should.exist(obj);
         let tX = xSize - 1;
         let tY = ySize - 1;
@@ -126,7 +126,7 @@ describe('Square cloneArray method', function() {
     it('should return matching date objects', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.Square({ x: xSize, y: ySize });
+        var obj = _module.create({ x: xSize, y: ySize });
         should.exist(obj);
         let tX = xSize - 1;
         let tY = ySize - 1;
@@ -141,7 +141,7 @@ describe('Square cloneArray method', function() {
     it('should return matching function objects', function(done) {
         let xSize = 5;
         let ySize = 10;
-        var obj = _module.Square({ x: xSize, y: ySize });
+        var obj = _module.create({ x: xSize, y: ySize });
         should.exist(obj);
         let tX = xSize - 1;
         let tY = ySize - 1;
