@@ -344,38 +344,6 @@ describe('Circle smoke test', function() {
         done();
     });
 
-    it('connectsAny should return false for invalid connection in direction', function(done) {
-        let rings = 5;
-        var grid = _module.Circle({ rings: rings });
-        should.exist(grid);
-        let ring = 1;
-        let pos = 1;
-        grid.connectsAny(ring,pos,["CW"]).should.eql(false);
-        done();
-    });
-
-    it('connectsAny should return true for valid connection in direction', function(done) {
-        let rings = 5;
-        var grid = _module.Circle({ rings: rings });
-        should.exist(grid);
-        let ring = 1;
-        let pos = 1;
-        grid.connect(ring,pos,"CW").should.eql(true);
-        grid.connectsAny(ring,pos,["CW"]).should.eql(true);
-        done();
-    });
-
-    it('connectsAny should return true for any valid connection in direction', function(done) {
-        let rings = 5;
-        var grid = _module.Circle({ rings: rings });
-        should.exist(grid);
-        let ring = 1;
-        let pos = 1;
-        grid.connect(ring,pos,"CW").should.eql(true);
-        grid.connectsAny(ring,pos,["A","CW","T"]).should.eql(true);
-        done();
-    });
-
     it('connects should return false for invalid connection in direction', function(done) {
         let rings = 5;
         var grid = _module.Circle({ rings: rings });
@@ -410,4 +378,69 @@ describe('Circle smoke test', function() {
         }
         done();
     });
+
+    it('connectsAny should return false for empty list', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 1;
+        grid.connectsAny(ring,pos,[]).should.eql(false);
+        done();
+    });
+
+    it('connectsAny should return false for invalid connection in direction', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 1;
+        grid.connectsAny(ring,pos,["CW"]).should.eql(false);
+        done();
+    });
+
+    it('connectsAny should return false if direction not in list', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 1;
+        grid.connect(ring,pos,"CW").should.eql(true);
+        grid.connectsAny(ring,pos,["CCW","T","A"]).should.eql(false);
+        done();
+    });
+
+    it('connectsAny should return true for valid connection in direction', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 1;
+        grid.connect(ring,pos,"CW").should.eql(true);
+        grid.connectsAny(ring,pos,["CW"]).should.eql(true);
+        done();
+    });
+
+    it('connectsAny should return true for any valid connection in direction', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 1;
+        grid.connect(ring,pos,"CW").should.eql(true);
+        grid.connectsAny(ring,pos,["A","CW","T"]).should.eql(true);
+        done();
+    });
+
+    it('connectsAny should return false for non-existant direction in list', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 1;
+        grid.connect(ring,pos,"CW").should.eql(true);
+        grid.connectsAny(ring,pos,["A","X","T"]).should.eql(false);
+        done();
+    });
+    
 });

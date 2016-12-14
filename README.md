@@ -50,8 +50,6 @@ You can call Square multiple times to create multiple connection grids.
 
     if(!grid1 || !grid2) ...
     
-
-    
 ### Square list = object.dirMap
 
 Returns a map of the internal direction bit flags.  The flags can be either __N__, __E__, __W__, or __S__.
@@ -136,7 +134,7 @@ Will return true if the cell at x and y is connected to any other cell.  Will re
 
 Marks a connection from the current cell to a neighbor cell. Will return false if x, y coordinate or direction is not valid. Only marks a connection in one direction.  Cell A connected to Cell B doesn't necessarily mean that Cell B is connected to Cell A. To connect in both directions see __connectUndirected__.
 
-* __dir__ - can be "N", "E", "S", or "W";
+* __dir__ - can be any direction that the grid supports
 
 Example:
 
@@ -146,7 +144,7 @@ Example:
 
 Marks a connection from the current cell to a neighbor cell *and back again*. Will return false if x, y coordinate or direction is not valid. Marks a connection in one direction. Cell A connected to Cell B also results in Cell B being marked as connected to Cell A. It's the same as calling __connect__ once from each cell and reversing the direction.
 
-* __dir__ - can be "N", "E", "S", or "W";
+* __dir__ - can be any direction that the grid supports
 
 Example:
 
@@ -156,11 +154,23 @@ Example:
 
 Returns true if cell has a connection in the specified direction.
 
-* __dir__ - can be "N", "E", "S", or "W";
+* __dir__ - can any direction that the grid supports
 
 Example:
 
 	if(grid.connects(2,2,"N")) ...
+	
+
+### Square object.connectsAny(x, y, list)
+
+Returns true if cell has a connection in any direction in the list.
+
+* __list__ - can contain any direction that the grid supports
+
+Example:
+
+
+    if(grid.connectsAny(x,y,["S","N","E"])) ...
 
 * * *
 
@@ -187,6 +197,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.17
+
+* Add __connectsAny__ method
 
 #### Version 0.1.16
 

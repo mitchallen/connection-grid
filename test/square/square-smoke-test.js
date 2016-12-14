@@ -274,4 +274,68 @@ describe('Square smoke test', function() {
         }
         done();
     });
+
+    it('connectsAny should return false for empty list', function(done) {
+        let xSize = 5, ySize = 6;
+        var grid = _module.Square({ x: xSize, y: ySize });
+        should.exist(grid);
+        let x = 1;
+        let y = 1;
+        grid.connectsAny(x,y,[]).should.eql(false);
+        done();
+    });
+
+    it('connectsAny should return false for invalid connection in direction', function(done) {
+        let xSize = 5, ySize = 6;
+        var grid = _module.Square({ x: xSize, y: ySize });
+        should.exist(grid);
+        let x = 1;
+        let y = 1;
+        grid.connectsAny(x,y,["N"]).should.eql(false);
+        done();
+    });
+
+    it('connectsAny should return false if direction not in list', function(done) {
+        let xSize = 5, ySize = 6;
+        var grid = _module.Square({ x: xSize, y: ySize });
+        should.exist(grid);
+        let x = 1;
+        let y = 1;
+        grid.connect(x,y,"N").should.eql(true);
+        grid.connectsAny(x,y,["E","S","W"]).should.eql(false);
+        done();
+    });
+
+    it('connectsAny should return true for valid connection in direction', function(done) {
+        let xSize = 5, ySize = 6;
+        var grid = _module.Square({ x: xSize, y: ySize });
+        should.exist(grid);
+        let x = 1;
+        let y = 1;
+        grid.connect(x,y,"N").should.eql(true);
+        grid.connectsAny(x,y,["N"]).should.eql(true);
+        done();
+    });
+
+    it('connectsAny should return true for any valid connection in direction', function(done) {
+        let xSize = 5, ySize = 6;
+        var grid = _module.Square({ x: xSize, y: ySize });
+        should.exist(grid);
+        let x = 1;
+        let y = 1;
+        grid.connect(x,y,"N").should.eql(true);
+        grid.connectsAny(x,y,["S","N","E"]).should.eql(true);
+        done();
+    });
+
+    it('connectsAny should return false for non-existant direction in list', function(done) {
+        let xSize = 5, ySize = 6;
+        var grid = _module.Square({ x: xSize, y: ySize });
+        should.exist(grid);
+        let x = 1;
+        let y = 1;
+        grid.connect(x,y,"N").should.eql(true);
+        grid.connectsAny(x,y,["E","X","W"]).should.eql(false);
+        done();
+    });
 });
