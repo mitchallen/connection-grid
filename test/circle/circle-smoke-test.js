@@ -244,6 +244,67 @@ describe('Circle smoke test', function() {
         done();
     });
 
+    it('getNeighbor CW for last cell in ring should loop back to 0', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 5;
+        let sDir = "CW";
+        var cell = grid.getNeighbor(ring,pos,sDir);
+        should.exist(cell);
+        cell.x.should.eql(ring);
+        cell.y.should.eql(0);
+        done();
+    });
+
+    it('getNeighbor CCW for first cell in ring should loop back to last cell', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 0;
+        let ringSize = grid.ringSize(ring);
+        let sDir = "CCW";
+        var cell = grid.getNeighbor(ring,pos,sDir);
+        should.exist(cell);
+        cell.x.should.eql(ring);
+        cell.y.should.eql(ringSize - 1);
+        done();
+    });
+
+    it('getNeighbor CW should alway return neighbor', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 5;
+        let sDir = "CW";
+        let ringSize = grid.ringSize(ring);
+        for(var i = 0; i < ringSize; i++ ) {
+            var cell = grid.getNeighbor(ring,pos,sDir);
+            should.exist(cell);
+            cell.x.should.eql(ring);
+        }
+        done();
+    });
+
+    it('getNeighbor CCW should alway return neighbor', function(done) {
+        let rings = 5;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        let ring = 1;
+        let pos = 5;
+        let sDir = "CCW";
+        let ringSize = grid.ringSize(ring);
+        for(var i = 0; i < ringSize; i++ ) {
+            var cell = grid.getNeighbor(ring,pos,sDir);
+            should.exist(cell);
+            cell.x.should.eql(ring);
+        }
+        done();
+    });
+
     it('connect should return true for valid parameters and set cell value to direction', function(done) {
         let rings = 5;
         var grid = _module.Circle({ rings: rings });

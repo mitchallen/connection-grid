@@ -188,6 +188,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.16
+
+* __Cirlce.getNeighbor__ with CW for last cell in ring now wraps properly
+
 #### Version 0.1.15
 
 * Added __Triangle__ method
