@@ -254,6 +254,11 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.18
+
+* Refactored __Circle.getNeighbor__
+* Fixed bug in __Circle.getNeighbor__
+
 #### Version 0.1.17
 
 * Add __connectsAny__ method
