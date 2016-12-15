@@ -140,6 +140,20 @@ describe('Circle smoke test', function() {
         done();
     });
 
+    it('ringSize method should return expected values', function(done) {
+        let rings = 7;
+        var grid = _module.Circle({ rings: rings });
+        should.exist(grid);
+        grid.ringSize(0).should.eql(1);
+        grid.ringSize(1).should.eql(6);
+        grid.ringSize(2).should.eql(12);
+        grid.ringSize(3).should.eql(24);
+        grid.ringSize(4).should.eql(24);
+        grid.ringSize(5).should.eql(24);
+        grid.ringSize(6).should.eql(48);
+        done();
+    });
+
     it('getNeighborDirs should return true for valid values', function(done) {
         let rings = 5;
         var grid = _module.Circle({ rings: rings });
