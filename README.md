@@ -109,9 +109,9 @@ Returns a map of the internal direction flags.
 	
 For __Square__ or __Triangle__ the flags can be either __N__, __E__, __W__, or __S__.
 	
-For __Hexagon__ the flags can be either __N__, __E__, __W__, __NW__, __NE__, __SW__ or __SE__.
+For __Hexagon__ the flags can be either __N__, __S__, __E__, __W__, __NW__, __NE__, __SW__ or __SE__.
 
-For __Circle__ the flags can be either: __CCW__, __CW__, __A__, __T__, __A0__, __A1__ or __T1__ 
+For __Circle__ the flags can be either: __CCW__, __CW__, __A__, __T__, __A0__, __A1__, __T0__ or __T1__ 
 
 
 ### list = object.isDir(dir)
