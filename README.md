@@ -265,6 +265,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.23
+
+* Added client example
+
 #### Version 0.1.22
 
 * Changed client window name to 'ConnectionGrid'
