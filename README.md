@@ -265,6 +265,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.21
+
+* Added client distribution
+
 #### Version 0.1.20
 
 * updated to latest grid

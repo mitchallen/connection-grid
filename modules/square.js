@@ -1,5 +1,5 @@
 /**
-    Module: @mitchallen/connection-grid/lib/triangle.js
+    Module: @mitchallen/connection-grid/lib/square.js
     Author: Mitch Allen
 */
 
@@ -9,7 +9,7 @@
 "use strict";
 
 var gridFactory = require("@mitchallen/grid"),
-    baseGrid = require("../lib/base");
+    baseGrid = require("./base");
 
 module.exports = (spec) => {
 
@@ -27,9 +27,6 @@ module.exports = (spec) => {
     }
 
     _grid.fill(0);
-
-    let UP = 0x01,
-        DOWN = 0x02;
 
     var _dirMap = { 
         "N": 0x010, 
@@ -60,17 +57,8 @@ module.exports = (spec) => {
             return { x: nx, y: ny };
         },
         getNeighborDirs: function(x, y) {
- 
-            var tDir = ( ( x + y ) % 2 === 0 ) ? UP : DOWN; 
-            /*
-                list the vertical direction twice. Otherwise the horizontal direction (E/W)
-                will be selected more often (66% of the time), resulting in mazes with a
-                horizontal bias.
-            */
-            var vertical = (tDir === DOWN ? "N": "S");
-
-            // return [ vertical, vertical, "E", "W ];
-            return [ vertical, "E", "W" ];
+            // Classic ignores x and y, but other derived classes may not
+            return [ "N", "S", "E", "W" ];
         },
     });
 

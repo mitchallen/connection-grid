@@ -2,19 +2,19 @@
   "name": "@mitchallen/connection-grid",
   "version": "0.1.20",
   "description": "map connections between cells in a 2D grid",
-  "main": "index.js",
+  "main": "dist/connection-grid.js",
   "scripts": {
     "//": "To use: npm run test-nodemon (assumes global location of mocha)",
-    "start": "node index.js",
-    "test": "mocha --recursive --timeout 20000",
+    "start": "node dist/connection-grid.js",
+    "test": "grunt && /usr/local/bin/mocha --recursive --timeout 20000",
     "test-nodemon": "nodemon /usr/local/bin/mocha --recursive --timeout 5000",
-    "test-create": "nodemon /usr/local/bin/mocha test/create/ --recursive --timeout 5000",
-    "test-circle": "nodemon /usr/local/bin/mocha test/circle/ --recursive --timeout 5000",
-    "test-hexagon": "nodemon /usr/local/bin/mocha test/hexagon/ --recursive --timeout 5000",
-    "test-square": "nodemon /usr/local/bin/mocha test/square/ --recursive --timeout 5000",
-    "test-triangle": "nodemon /usr/local/bin/mocha test/triangle/ --recursive --timeout 5000",
-    "test-debug": "nodemon /usr/local/bin/mocha -g '@DEBUG' --recursive --timeout 20000",
-    "test-jenkins": "mocha --recursive --timeout 20000 -R xunit test/ > test-reports.xml"
+    "test-create": "grunt && /usr/local/bin/mocha test/create/ --recursive --timeout 5000",
+    "test-circle": "grunt &&  /usr/local/bin/mocha test/circle/ --recursive --timeout 5000",
+    "test-hexagon": "grunt &&  /usr/local/bin/mocha test/hexagon/ --recursive --timeout 5000",
+    "test-square": "grunt &&  /usr/local/bin/mocha test/square/ --recursive --timeout 5000",
+    "test-triangle": "grunt &&  /usr/local/bin/mocha test/triangle/ --recursive --timeout 5000",
+    "test-debug": "grunt &&  /usr/local/bin/mocha -g '@DEBUG' --recursive --timeout 20000",
+    "test-jenkins": "grunt && mocha --recursive --timeout 20000 -R xunit test/ > test-reports.xml"
   },
   "repository": {
     "type": "git",
@@ -23,15 +23,20 @@
   "author": "Mitch Allen <npm@mitchallen.com> (http://mitchallen.com)",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
     "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-shell": "^1.3.0",
     "should": "^10.0.0",
     "supertest": "^2.0.0"
   },
   "dependencies": {
-    "@mitchallen/grid": "^0.1.12",
-    "@mitchallen/shuffle": "^0.1.0"
+    "@mitchallen/grid": "^0.1.19",
+    "@mitchallen/shuffle": "^0.1.2"
   }
 }

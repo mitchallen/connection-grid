@@ -41,9 +41,51 @@ module.exports = function (grunt) {
             }
         },
 
+        browserify: {
+            dist: {
+                options: {
+                    browserifyOptions: {
+                        standalone: 'CONNECTION-GRID'
+                    },
+                    transform: [['babelify', {presets: ['es2015']}]]
+                },
+                files: {
+                   // if the source file has an extension of es6 then
+                   // we change the name of the source file accordingly.
+                   // The result file's extension is always .js
+                   "./dist/connection-grid.js": ["./modules/index.js"],
+                   "./dist/base.js": ["./modules/base.js"],
+                   "./dist/square.js": ["./modules/square.js"],
+                   "./dist/circle.js": ["./modules/circle.js"],
+                   "./dist/hexagon.js": ["./modules/hexagon.js"],
+                   "./dist/triangle.js": ["./modules/triangle.js"]
+                }
+            }
+        },
+
+        uglify: {
+            my_target: {
+                files: {
+                    './dist/connection-grid.min.js': ['./dist/connection-grid.js']
+                }
+            }
+        },
+
+        watch: {
+             scripts: {
+                files: ["./modules/*.js"],
+                tasks: ["browserify",'uglify']
+             }
+        }
     });
 
-    grunt.registerTask('default', ['jshint']);
-    grunt.registerTask('pubinit', ['jshint','shell:pubinit']);
-    grunt.registerTask('publish', ['jshint','bump','shell:publish']);
+    grunt.loadNpmTasks("grunt-browserify");
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks("grunt-contrib-watch");
+
+    grunt.registerTask('default', ['jshint','browserify','uglify']);
+    grunt.registerTask('monitor', ['jshint','watch']);
+    grunt.registerTask("build", ['browserify','uglify']);
+    grunt.registerTask('pubinit', ['jshint','browserify','uglify','shell:pubinit']);
+    grunt.registerTask('publish', ['jshint','browserify','uglify','bump','shell:publish']);
 };

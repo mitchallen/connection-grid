@@ -9,11 +9,11 @@
 "use strict";
 
 var gridFactory = require("@mitchallen/grid"),
-    baseGrid = require('./lib/base'),
-    squareGrid = require('./lib/square'),
-    hexagonGrid = require('./lib/hexagon'),
-    circleGrid = require('./lib/circle'),
-    triangleGrid = require('./lib/triangle');
+    baseGrid = require('./base'),
+    squareGrid = require('./square'),
+    hexagonGrid = require('./hexagon'),
+    circleGrid = require('./circle'),
+    triangleGrid = require('./triangle');
 
 var createGrid = (spec) => {
     console.warn("@mitchallen/connection-grid: .create is deprecated. Use .Square instead.");

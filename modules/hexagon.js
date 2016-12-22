@@ -9,7 +9,7 @@
 "use strict";
 
 var gridFactory = require("@mitchallen/grid"),
-    baseGrid = require("../lib/base");
+    baseGrid = require("./base");
 
 module.exports = (spec) => {
     
