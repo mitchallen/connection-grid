@@ -45,7 +45,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     browserifyOptions: {
-                        standalone: 'CONNECTION-GRID'
+                        standalone: 'ConnectionGrid'
                     },
                     transform: [['babelify', {presets: ['es2015']}]]
                 },
