@@ -45,20 +45,16 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     browserifyOptions: {
-                        standalone: 'ConnectionGrid'
+                        standalone: 'MitchAllen.ConnectionGrid'
                     },
-                    transform: [['babelify', {presets: ['es2015']}]]
+                    transform: [['babelify', {presets: ['es2015']}]],
+                    plugin: [[ "browserify-derequire" ]]
                 },
                 files: {
                    // if the source file has an extension of es6 then
                    // we change the name of the source file accordingly.
                    // The result file's extension is always .js
-                   "./dist/connection-grid.js": ["./modules/index.js"],
-                   "./dist/base.js": ["./modules/base.js"],
-                   "./dist/square.js": ["./modules/square.js"],
-                   "./dist/circle.js": ["./modules/circle.js"],
-                   "./dist/hexagon.js": ["./modules/hexagon.js"],
-                   "./dist/triangle.js": ["./modules/triangle.js"]
+                   "./dist/connection-grid.js": ["./modules/index.js"]
                 }
             }
         },
