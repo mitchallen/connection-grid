@@ -9,7 +9,7 @@
 "use strict";
 
 var gridFactory = require("@mitchallen/grid"),
-    baseGrid = require("./base");
+    baseGrid = require("@mitchallen/connection-grid-core").create;
 
 module.exports = (spec) => {
     

@@ -8,9 +8,7 @@
 
 "use strict";
 
-var gridFactory = require("@mitchallen/grid"),
-    baseGrid = require('./base'),
-    squareGrid = require('./square'),
+var squareGrid = require('./square'),
     hexagonGrid = require('./hexagon'),
     circleGrid = require('./circle'),
     triangleGrid = require('./triangle');
