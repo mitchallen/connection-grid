@@ -317,6 +317,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Version History
 
+#### Version 0.1.26
+
+* Replaced modules/base.js with @mitchallen/connection-grid-core
+
 #### Version 0.1.25
 
 * Browser now must use __window.MitchAllen.ConnectionGrid__.
@@ -434,6 +438,5 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 #### Version 0.1.0 
 
 * initial release
-
 
 * * *
