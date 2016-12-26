@@ -27,25 +27,6 @@ You must use __npm__ __2.7.0__ or higher because of the scoped package name.
 
 You can reference a minimized client version inside an HTML script tag using one of these URL's:
 
-* https://cdn.rawgit.com/mitchallen/connection-grid/v0.1.27/dist/connection-grid.min.js
-* https://unpkg.com/@mitchallen/connection-grid@0.1.27/dist/connection-grid.min.js
-
-Adjust for the version that you wish to use.
-
-The __rawgit.com__ URL will pull based on the version from GitHub.
-
-The __unpkg.com__ URL will pull based on the version in npmjs.com.
-
-See http://rawgit.com and https://unpkg.com for other ways to retrieve the file.
-
-The factory function can be retrieved from __window.MitchAllen.ConnectionGrid__:
-
-    var factory = window.MitchAllen.ConnectionGrid;
-    console.log(factory);
-    var xSize = 10, ySize = 5;
-    var sg = factory.Square( { x: xSize, y: ySize } );
-    sg.log();
-
 Example:
 
     <!DOCTYPE html>
@@ -56,9 +37,9 @@ Example:
         <meta name="description" content="Connection Grid Example">
         <!-- either cdn should work -->
         <!--
-        <script src="https://cdn.rawgit.com/mitchallen/connection-grid/v0.1.25/dist/connection-grid.min.js"></script>
+        <script src="https://cdn.rawgit.com/mitchallen/connection-grid/v0.1.28/dist/connection-grid.min.js"></script>
         -->
-        <script src="https://unpkg.com/@mitchallen/connection-grid@0.1.25/dist/connection-grid.min.js"></script>
+        <script src="https://unpkg.com/@mitchallen/connection-grid@0.1.28/dist/connection-grid.min.js"></script>
         <script>
           var factory = window.MitchAllen.ConnectionGrid;
           console.log(factory);
@@ -316,6 +297,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.28
+
+* replaced modules/square.js with @mitchallen/connection-grid-square
 
 #### Version 0.1.27
 

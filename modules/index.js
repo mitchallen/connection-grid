@@ -8,7 +8,7 @@
 
 "use strict";
 
-var squareGrid = require('./square'),
+var squareGrid = require('@mitchallen/connection-grid-square').create,
     hexagonGrid = require('./hexagon'),
     circleGrid = require('./circle'),
     triangleGrid = require('./triangle');
