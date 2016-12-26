@@ -8,7 +8,7 @@
 
 "use strict";
 
-var gridFactory = require("@mitchallen/grid"),
+var gridFactory = require("@mitchallen/grid-square"),
     baseGrid = require("@mitchallen/connection-grid-core").create;
 
 module.exports = (spec) => {
@@ -17,7 +17,7 @@ module.exports = (spec) => {
     let _x = spec.x || 0;
     let _y = spec.y || 0;
 
-    var _grid = gridFactory.Square({
+    var _grid = gridFactory.create({
         x: _x,
         y: _y
     });

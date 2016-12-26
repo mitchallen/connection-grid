@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@mitchallen/grid": "^0.1.21",
+    "@mitchallen/grid-square": "^0.1.4",
     "@mitchallen/shuffle": "^0.1.7"
   }
 }

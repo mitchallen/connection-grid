@@ -27,8 +27,8 @@ You must use __npm__ __2.7.0__ or higher because of the scoped package name.
 
 You can reference a minimized client version inside an HTML script tag using one of these URL's:
 
-* https://cdn.rawgit.com/mitchallen/connection-grid/v0.1.25/dist/connection-grid.min.js
-* https://unpkg.com/@mitchallen/connection-grid@0.1.25/dist/connection-grid.min.js
+* https://cdn.rawgit.com/mitchallen/connection-grid/v0.1.27/dist/connection-grid.min.js
+* https://unpkg.com/@mitchallen/connection-grid@0.1.27/dist/connection-grid.min.js
 
 Adjust for the version that you wish to use.
 
@@ -316,6 +316,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.27
+
+* square now uses @mitchallen/grid-square
 
 #### Version 0.1.26
 
