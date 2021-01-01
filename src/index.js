@@ -8,12 +8,12 @@
 
 "use strict";
 
-var squareGrid = require('@mitchallen/connection-grid-square').create,
+let squareGrid = require('@mitchallen/connection-grid-square').create,
     hexagonGrid = require('./hexagon'),
     circleGrid = require('./circle'),
     triangleGrid = require('./triangle');
 
-var createGrid = (spec) => {
+let createGrid = (spec) => {
     console.warn("@mitchallen/connection-grid: .create is deprecated. Use .Square instead.");
     return squareGrid( spec );
 };

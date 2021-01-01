@@ -1,5 +1,5 @@
 /**
-    Module: @mitchallen/connection-grid/lib/hexagon.js
+    Module: @mitchallen/connection-grid/src/hexagon.js
     Author: Mitch Allen
 */
 
@@ -8,7 +8,7 @@
 
 "use strict";
 
-var gridFactory = require("@mitchallen/grid"),
+let gridFactory = require("@mitchallen/grid"),
     baseGrid = require("@mitchallen/connection-grid-core").create;
 
 module.exports = (spec) => {
@@ -17,7 +17,7 @@ module.exports = (spec) => {
     let _x = spec.x || 0;
     let _y = spec.y || 0;
 
-    var _grid = gridFactory.Hexagon({
+    let _grid = gridFactory.Hexagon({
         x: _x,
         y: _y
     });
@@ -43,7 +43,7 @@ module.exports = (spec) => {
         "NE": "SW", "NW": "SE", "SE": "NW", "SW": "NE" 
     };
  
-    var obj = baseGrid( {
+    let obj = baseGrid( {
         grid: _grid,
         dirMap: _dirMap,
         oppositeMap: _oppositeMap
@@ -72,8 +72,8 @@ module.exports = (spec) => {
                 "N": -1, "NE": -1, "NW": -1,
                 "E":  0, "W":   0
             };
-            var nx = x + _DX[dir];
-            var ny = y + _DY[dir];
+            let nx = x + _DX[dir];
+            let ny = y + _DY[dir];
             if(!this.isCell(nx, ny)) { 
                 return null; 
             }

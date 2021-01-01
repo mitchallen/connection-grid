@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                    // if the source file has an extension of es6 then
                    // we change the name of the source file accordingly.
                    // The result file's extension is always .js
-                   "./dist/connection-grid.js": ["./modules/index.js"]
+                   "./dist/connection-grid.js": ["./src/index.js"]
                 }
             }
         },
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 
         watch: {
              scripts: {
-                files: ["./modules/*.js"],
+                files: ["./src/*.js"],
                 tasks: ["browserify",'uglify']
              }
         }

@@ -1,5 +1,5 @@
 /**
-    Module: @mitchallen/connection-grid/lib/triangle.js
+    Module: @mitchallen/connection-grid/src/triangle.js
     Author: Mitch Allen
 */
 
@@ -8,7 +8,7 @@
 
 "use strict";
 
-var gridFactory = require("@mitchallen/grid"),
+let gridFactory = require("@mitchallen/grid"),
     baseGrid = require("@mitchallen/connection-grid-core").create;
 
 module.exports = (spec) => {
@@ -17,7 +17,7 @@ module.exports = (spec) => {
     let _x = spec.x || 0;
     let _y = spec.y || 0;
 
-    var _grid = gridFactory.Square({
+    let _grid = gridFactory.Square({
         x: _x,
         y: _y
     });
@@ -31,7 +31,7 @@ module.exports = (spec) => {
     let UP = 0x01,
         DOWN = 0x02;
 
-    var _dirMap = { 
+    let _dirMap = { 
         "N": 0x010, 
         "S": 0x020, 
         "E": 0x040, 
@@ -39,7 +39,7 @@ module.exports = (spec) => {
 
     let _oppositeMap = { "E": "W", "W": "E", "N": "S", "S": "N" };
 
-    var obj = baseGrid( {
+    let obj = baseGrid( {
         grid: _grid,
         dirMap: _dirMap,
         oppositeMap: _oppositeMap
@@ -52,8 +52,8 @@ module.exports = (spec) => {
             if(!this.isDir(dir)) { return null; }
             let _DX = { "E": 1, "W": -1, "N": 0, "S": 0 };
             let _DY = { "E": 0, "W": 0, "N": -1, "S": 1 };
-            var nx = x + _DX[dir];
-            var ny = y + _DY[dir];
+            let nx = x + _DX[dir];
+            let ny = y + _DY[dir];
             if(!this.isCell(nx, ny)) { 
                 return null; 
             }
@@ -61,13 +61,13 @@ module.exports = (spec) => {
         },
         getNeighborDirs: function(x, y) {
  
-            var tDir = ( ( x + y ) % 2 === 0 ) ? UP : DOWN; 
+            let tDir = ( ( x + y ) % 2 === 0 ) ? UP : DOWN; 
             /*
                 list the vertical direction twice. Otherwise the horizontal direction (E/W)
                 will be selected more often (66% of the time), resulting in mazes with a
                 horizontal bias.
             */
-            var vertical = (tDir === DOWN ? "N": "S");
+            let vertical = (tDir === DOWN ? "N": "S");
 
             // return [ vertical, vertical, "E", "W ];
             return [ vertical, "E", "W" ];

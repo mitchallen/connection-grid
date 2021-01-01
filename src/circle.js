@@ -1,5 +1,5 @@
 /**
-    Module: @mitchallen/connection-grid/lib/circle.js
+    Module: @mitchallen/connection-grid/src/circle.js
     Author: Mitch Allen
 */
 
@@ -8,7 +8,7 @@
 
 "use strict";
 
-var gridFactory = require("@mitchallen/grid"),
+let gridFactory = require("@mitchallen/grid"),
     baseGrid = require("@mitchallen/connection-grid-core").create;
 
 module.exports = (spec) => {
@@ -16,7 +16,7 @@ module.exports = (spec) => {
     spec = spec || {};
     let _rings = spec.rings || 0;
   
-    var _grid = gridFactory.Circle({
+    let _grid = gridFactory.Circle({
         rings: _rings
     });
 
@@ -26,7 +26,7 @@ module.exports = (spec) => {
 
     _grid.fill(0);
 
-    var _dirMap = { 
+    let _dirMap = { 
         "CCW": 0x010,   // Counter-Clockwise 
          "CW": 0x020,   // Clockwise
           "A": 0x040,   // Away from Center (1:1)
@@ -48,7 +48,7 @@ module.exports = (spec) => {
          "T1": "A1",
     };
 
-    var obj = baseGrid( {
+    let obj = baseGrid( {
         grid: _grid,
         dirMap: _dirMap,
         oppositeMap: _oppositeMap
@@ -70,9 +70,9 @@ module.exports = (spec) => {
                 return ["CCW", "CW", "A0", "A1" ];
             }
 
-            var aSize = this.ringSize(ring + 1);    // 0 means current ring is outer
-            var rSize = this.ringSize(ring);
-            var tSize = this.ringSize(ring - 1);
+            let aSize = this.ringSize(ring + 1);    // 0 means current ring is outer
+            let rSize = this.ringSize(ring);
+            let tSize = this.ringSize(ring - 1);
 
             if( rSize === tSize ) {
                 // | * |
@@ -139,11 +139,11 @@ module.exports = (spec) => {
             // dir must be string and in dirmap
             if(!this.isDir(dir)) { return null; }
 
-            var ringSize = this.ringSize(ring);
+            let ringSize = this.ringSize(ring);
                 // nr = 0, // neighbor ring
                 // np = 0; // neighbor position
 
-            var NEIGHBOR_MAP = {
+            let NEIGHBOR_MAP = {
                 "CCW": { x: ring,     y: pos === 0 ? ringSize - 1 : pos - 1 },
                  "CW": { x: ring,     y: (pos + 1) % ringSize },
                   "A": { x: ring + 1, y: pos },
@@ -154,7 +154,7 @@ module.exports = (spec) => {
                  "T1": { x: ring - 1, y: (pos - 1) / 2 }
             };
 
-            var nc = NEIGHBOR_MAP[dir];
+            let nc = NEIGHBOR_MAP[dir];
 
             if(!nc) {
                 return null;
