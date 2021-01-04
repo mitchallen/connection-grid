@@ -38,9 +38,9 @@
     "supertest": "^2.0.0"
   },
   "dependencies": {
-    "@mitchallen/connection-grid-square": "^0.1.11",
-    "@mitchallen/grid": "^0.1.21",
-    "@mitchallen/grid-square": "^0.1.4",
+    "@mitchallen/connection-grid-square": "^0.1.13",
+    "@mitchallen/grid": "^0.1.24",
+    "@mitchallen/grid-square": "^0.1.9",
     "@mitchallen/shuffle": "^0.1.7"
   }
 }
