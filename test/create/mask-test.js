@@ -6,52 +6,46 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('mask test', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('isMasked should return true for a masked cell', function(done) {
+    it('isMasked should return true for a masked cell', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.mask(tX,tY).should.eql(true);
-        grid.isMasked(tX,tY).should.eql(true);
-        done();
+        assert.deepStrictEqual(grid.mask(tX,tY), true);
+        assert.deepStrictEqual(grid.isMasked(tX,tY), true);
     });
 
-    it('isMasked should return false for a non-masked cell', function(done) {
+    it('isMasked should return false for a non-masked cell', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.isMasked(tX,tY).should.eql(false);
-        done();
+        assert.deepStrictEqual(grid.isMasked(tX,tY), false);
     });
 });

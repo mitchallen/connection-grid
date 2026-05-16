@@ -6,90 +6,80 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('set method', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('should return true when called with valid parameters', function(done) {
+    it('should return true when called with valid parameters', function() {
         var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.set(0,0,5);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return second value when called twice with same x and y values', function(done) {
+    it('should return second value when called twice with same x and y values', function() {
         var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = 0;
         let tY = 0;
         let tValues = [ 5, 10 ];
         var condition = obj.set(tX,tY,tValues[0]);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         condition = obj.set(tX,tY,tValues[1]);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValues[1]);
-        done();
+        assert.deepStrictEqual(result, tValues[1]);
     });
 
-    it('should return true when called with x and y parameters set to size minus one', function(done) {
+    it('should return true when called with x and y parameters set to size minus one', function() {
         let sizeX = 10;
         let sizeY = 20;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.set(sizeX-1,sizeY-1,5);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return true when called with negative cell value', function(done) {
+    it('should return true when called with negative cell value', function() {
         var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.set(0,0,-1);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return true when called with string value', function(done) {
+    it('should return true when called with string value', function() {
         var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.set(0,0,"foo");
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return true when called with object value', function(done) {
+    it('should return true when called with object value', function() {
         var obj = _module.create({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.set(0,0,{ name: "foo" });
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 });

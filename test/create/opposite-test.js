@@ -6,39 +6,35 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('getOppositeDir', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('should return opposite neighbor', function(done) {
+    it('should return opposite neighbor', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 2;
         let tY = 3;
         let list = ["N","S","E","W"];
@@ -46,26 +42,23 @@ describe('getOppositeDir', function() {
         for( var key in list ) {
             var sDir = list[key];
             var oDir = grid.getOppositeDir(sDir);
-            oDir.should.eql(opps[key]);
+            assert.deepStrictEqual(oDir, opps[key]);
         }
-        done();
     });
 
-    it('should return null for invalid dir', function(done) {
+    it('should return null for invalid dir', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
+        assert.ok(grid != null);
         var sDir = "X";
         var oDir = grid.getOppositeDir(sDir);
-        should.not.exist(oDir);
-        done();
+        assert.ok(oDir == null);
     });
 
-    it('should return null for null dir', function(done) {
+    it('should return null for null dir', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
+        assert.ok(grid != null);
         var sDir = null;
         var oDir = grid.getOppositeDir(sDir);
-        should.not.exist(oDir);
-        done();
+        assert.ok(oDir == null);
     });
 });

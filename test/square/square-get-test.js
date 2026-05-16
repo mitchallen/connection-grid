@@ -6,141 +6,130 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('Square get method', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('should return value when called with valid x and y parameters', function(done) {
+    it('should return value when called with valid x and y parameters', function() {
         var obj = _module.Square({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = 0;
         let tY = 0;
         let tValue = 5;
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        done();
+        assert.deepStrictEqual(result, tValue);
     });
 
-    it('should return value when called with x and y parameters set to size minus one', function(done) {
+    it('should return value when called with x and y parameters set to size minus one', function() {
         let sizeX = 20;
         let sizeY = 10;
         var obj = _module.Square({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = sizeX-1;
         let tY = sizeY-1;
         let tValue = 5;
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        done();
+        assert.deepStrictEqual(result, tValue);
     });
 
-    it('should return negative value', function(done) {
+    it('should return negative value', function() {
         let sizeX = 20;
         let sizeY = 10;
         var obj = _module.Square({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = sizeX-1;
         let tY = sizeY-1;
         let tValue = -5;
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        done();
+        assert.deepStrictEqual(result, tValue);
     });
 
-    it('should return string', function(done) {
+    it('should return string', function() {
         let sizeX = 20;
         let sizeY = 10;
         var obj = _module.Square({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = sizeX-1;
         let tY = sizeY-1;
         let tValue = "foo";
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        done();
+        assert.deepStrictEqual(result, tValue);
     });
 
-    it('should return object', function(done) {
+    it('should return object', function() {
         let sizeX = 20;
         let sizeY = 10;
         var obj = _module.Square({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = sizeX-1;
         let tY = sizeY-1;
         let data = "foo";
         let tValue = { name: data };
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        should.exist(result.name);
-        result.name.should.eql(data);
-        done();
+        assert.deepStrictEqual(result, tValue);
+        assert.ok(result.name != null);
+        assert.deepStrictEqual(result.name, data);
     });
 
-    it('should return date', function(done) {
+    it('should return date', function() {
         let sizeX = 20;
         let sizeY = 10;
         var obj = _module.Square({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = sizeX-1;
         let tY = sizeY-1;
         let tValue = new Date();
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        done();
+        assert.deepStrictEqual(result, tValue);
     });
 
-    it('should return function', function(done) {
+    it('should return function', function() {
         let sizeX = 20;
         let sizeY = 10;
         var obj = _module.Square({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = sizeX-1;
         let tY = sizeY-1;
         let fReturn = 123;
         let tValue = function() { return fReturn; };
         var condition = obj.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = obj.get(tX,tY);
-        result.should.eql(tValue);
-        result().should.eql(fReturn);
-        done();
+        assert.deepStrictEqual(result, tValue);
+        assert.deepStrictEqual(result(), fReturn);
     });
 });

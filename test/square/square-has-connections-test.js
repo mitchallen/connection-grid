@@ -6,75 +6,67 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('Square hasConnetions', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('should return false when nothing connected', function(done) {
+    it('should return false when nothing connected', function() {
         var grid = _module.Square({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.hasConnections(tX,tY).should.eql(false);
-        done();
+        assert.deepStrictEqual(grid.hasConnections(tX,tY), false);
     });
 
-    it('marked should return false when nothing connected and marked visited', function(done) {
+    it('marked should return false when nothing connected and marked visited', function() {
         var grid = _module.Square({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.markVisited(tX,tY).should.eql(true);
-        grid.hasConnections(tX,tY).should.eql(false);
-        done();
+        assert.deepStrictEqual(grid.markVisited(tX,tY), true);
+        assert.deepStrictEqual(grid.hasConnections(tX,tY), false);
     });
 
-    it('should return true when connected', function(done) {
+    it('should return true when connected', function() {
         var grid = _module.Square({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
         grid.connect(tX,tY,"S");
-        grid.hasConnections(tX,tY).should.eql(true);
-        done();
+        assert.deepStrictEqual(grid.hasConnections(tX,tY), true);
     });
 
 
-    it('should return true when connected and marked visited', function(done) {
+    it('should return true when connected and marked visited', function() {
         var grid = _module.Square({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
         grid.connect(tX,tY,"S");
-        grid.markVisited(tX,tY).should.eql(true);
-        grid.hasConnections(tX,tY).should.eql(true);
-        done();
+        assert.deepStrictEqual(grid.markVisited(tX,tY), true);
+        assert.deepStrictEqual(grid.hasConnections(tX,tY), true);
     });
 
 });

@@ -6,153 +6,142 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('Square cloneArray method', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-   it('should return a clone of the internal array', function(done) {
+   it('should return a clone of the internal array', function() {
         let xSize = 5;
         let ySize = 10;
         var obj = _module.Square({ x: xSize, y: ySize });
-        should.exist(obj);
+        assert.ok(obj != null);
         let fillValue = 999;
         obj.fill(fillValue);
         let tX = xSize - 1;
         let tY = ySize - 1;
         let tValue = 100;
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
-        arr[tX][tY].should.eql(tValue);
-        arr[0][0].should.eql(fillValue);
-        done();
+        assert.deepStrictEqual(arr[tX][tY], tValue);
+        assert.deepStrictEqual(arr[0][0], fillValue);
     });
 
-    it('return should not be reference to original', function(done) {
+    it('return should not be reference to original', function() {
         let xSize = 5;
         let ySize = 10;
         var obj = _module.Square({ x: xSize, y: ySize });
-        should.exist(obj);
+        assert.ok(obj != null);
         let fillValue = 999;
         obj.fill(fillValue);
         let tX = xSize - 1;
         let tY = ySize - 1;
         let tValue = 100;
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
-        arr[tX][tY].should.eql(tValue);
-        arr[0][0].should.eql(fillValue);
+        assert.deepStrictEqual(arr[tX][tY], tValue);
+        assert.deepStrictEqual(arr[0][0], fillValue);
         let cValue = 5000;
         arr[0][0] = cValue;
-        arr[0][0].should.eql(cValue);
-        obj.get(0,0).should.eql(fillValue);
-        done();
+        assert.deepStrictEqual(arr[0][0], cValue);
+        assert.deepStrictEqual(obj.get(0,0), fillValue);
     });
 
-    it('should return a clone of the internal array for a one by one grid', function(done) {
+    it('should return a clone of the internal array for a one by one grid', function() {
         var obj = _module.Square({ x: 1, y: 1 });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = 0;
         let tY = 0;
         let tValue = 100;
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
-        arr[tX][tY].should.eql(tValue);
-        done();
+        assert.deepStrictEqual(arr[tX][tY], tValue);
     });
 
-    it('should return matching string objects', function(done) {
+    it('should return matching string objects', function() {
         let xSize = 5;
         let ySize = 10;
         var obj = _module.Square({ x: xSize, y: ySize });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = xSize - 1;
         let tY = ySize - 1;
         let tValue = "foo";
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
-        arr[tX][tY].should.eql(tValue);
-        done();
+        assert.deepStrictEqual(arr[tX][tY], tValue);
     });
 
 
-    it('should return matching objects', function(done) {
+    it('should return matching objects', function() {
         let xSize = 5;
         let ySize = 10;
         var obj = _module.Square({ x: xSize, y: ySize });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = xSize - 1;
         let tY = ySize - 1;
         let tName = "foo";
         let tValue = { name: tName };
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
         var result = arr[tX][tY];
-        result.should.eql(tValue);
-        result.name.should.eql(tName);
-        done();
+        assert.deepStrictEqual(result, tValue);
+        assert.deepStrictEqual(result.name, tName);
     });
 
-    it('should return matching date objects', function(done) {
+    it('should return matching date objects', function() {
         let xSize = 5;
         let ySize = 10;
         var obj = _module.Square({ x: xSize, y: ySize });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = xSize - 1;
         let tY = ySize - 1;
         let tValue = new Date();
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
-        arr[tX][tY].should.eql(tValue);
-        done();
+        assert.deepStrictEqual(arr[tX][tY], tValue);
     });
 
-    it('should return matching function objects', function(done) {
+    it('should return matching function objects', function() {
         let xSize = 5;
         let ySize = 10;
         var obj = _module.Square({ x: xSize, y: ySize });
-        should.exist(obj);
+        assert.ok(obj != null);
         let tX = xSize - 1;
         let tY = ySize - 1;
         let fReturn = 123;
         let tValue = function() { return fReturn; };
         var result = obj.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = obj.cloneArray();
         var fResult = arr[tX][tY];
-        fResult.should.eql(tValue);
-        fResult().should.eql(fReturn);
-        done();
+        assert.deepStrictEqual(fResult, tValue);
+        assert.deepStrictEqual(fResult(), fReturn);
     });
 });

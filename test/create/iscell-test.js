@@ -6,94 +6,84 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('isCell method', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('should return true when called with valid x and y parameters', function(done) {
+    it('should return true when called with valid x and y parameters', function() {
         let sizeX = 5;
         let sizeY = 5;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.isCell(sizeX-1, sizeY-1);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return true when called with x and y parameters set to zero', function(done) {
+    it('should return true when called with x and y parameters set to zero', function() {
         let sizeX = 1;
         let sizeY = 1;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.isCell(0, 0);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return true when called with x and y parameters set to size minus one', function(done) {
+    it('should return true when called with x and y parameters set to size minus one', function() {
         let sizeX = 10;
         let sizeY = 5;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.isCell(sizeX-1, sizeY-1);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('should return false when called with negative x and y parameters', function(done) {
+    it('should return false when called with negative x and y parameters', function() {
         let sizeX = 5;
         let sizeY = 5;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.isCell(-1, -1);
-        result.should.eql(false);
-        done();
+        assert.deepStrictEqual(result, false);
     });
 
-    it('should return false when called with negative x parameter', function(done) {
+    it('should return false when called with negative x parameter', function() {
         let sizeX = 5;
         let sizeY = 5;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.isCell(-1, sizeY-1);
-        result.should.eql(false);
-        done();
+        assert.deepStrictEqual(result, false);
     });
 
-    it('should return false when called with negative y parameter', function(done) {
+    it('should return false when called with negative y parameter', function() {
         let sizeX = 5;
         let sizeY = 5;
         var obj = _module.create({ x: sizeX, y: sizeY });
-        should.exist(obj);
+        assert.ok(obj != null);
         var result = obj.isCell(sizeX-1, -1);
-        result.should.eql(false);
-        done();
+        assert.deepStrictEqual(result, false);
     });
 
 });

@@ -6,272 +6,246 @@
 
 "use strict";
 
-var request = require('supertest'),
-    should = require('should'),
-    modulePath = "../../dist/connection-grid";
+const { describe, it, before, after, beforeEach, afterEach } = require('node:test');
+const assert = require('node:assert');
+const modulePath = "../../src/index";
 
 describe('module smoke test', function() {
 
     var _module = null;
 
-    before(function(done) {
+    before(function() {
         // Call before all tests
         delete require.cache[require.resolve(modulePath)];
         _module = require(modulePath);
-        done();
     });
 
-    after(function(done) {
+    after(function() {
         // Call after all tests
-        done();
     });
 
-    beforeEach(function(done) {
+    beforeEach(function() {
         // Call before each test
-        done();
     });
 
-    afterEach(function(done) {
+    afterEach(function() {
         // Call after eeach test
-        done();
     });
 
-    it('module should exist', function(done) {
-        should.exist(_module);
-        done();
+    it('module should exist', function() {
+        assert.ok(_module != null);
     });
 
-    it('create method with no spec should return object', function(done) {
+    it('create method with no spec should return object', function() {
         var grid = _module.create();
-        should.exist(grid);
-        done();
+        assert.ok(grid != null);
     });
 
-    it('create method with valid x and y parameters should return object', function(done) {
+    it('create method with valid x and y parameters should return object', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
-        done();
+        assert.ok(grid != null);
     });
 
-    it('xSize should return size of x dimension', function(done) {
+    it('xSize should return size of x dimension', function() {
         let sizeX = 5;
         let sizeY = 6;
         var grid = _module.create({ x: sizeX, y: sizeY });
-        grid.xSize.should.eql(sizeX);
-        done();
+        assert.deepStrictEqual(grid.xSize, sizeX);
     });
 
-    it('ySize should return size of y dimension', function(done) {
+    it('ySize should return size of y dimension', function() {
         let sizeX = 5;
         let sizeY = 6;
         var grid = _module.create({ x: sizeX, y: sizeY });
-        grid.ySize.should.eql(sizeY);
-        done();
+        assert.deepStrictEqual(grid.ySize, sizeY);
     });
 
-    it('isCell method with valid x and y parameters should return true', function(done) {
+    it('isCell method with valid x and y parameters should return true', function() {
         let sizeX = 5;
         let sizeY = 5;
         var grid = _module.create({ x: sizeX, y: sizeY });
-        should.exist(grid);
+        assert.ok(grid != null);
         var result = grid.isCell(sizeX-1, sizeY-1);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('set method with valid parameter should return true', function(done) {
+    it('set method with valid parameter should return true', function() {
         var grid = _module.create({ x: 1, y: 1 });
-        should.exist(grid);
+        assert.ok(grid != null);
         var result = grid.set(0,0,5);
-        result.should.eql(true);
-        done();
+        assert.deepStrictEqual(result, true);
     });
 
-    it('get method with valid parameter should return value', function(done) {
+    it('get method with valid parameter should return value', function() {
         var grid = _module.create({ x: 1, y: 1 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
         let tValue = 5;
         var condition = grid.set(tX,tY,tValue);
-        condition.should.eql(true);
+        assert.deepStrictEqual(condition, true);
         var result = grid.get(tX,tY);
-        result.should.eql(tValue);
-        done();
+        assert.deepStrictEqual(result, tValue);
     });
 
-    it('fill method with valid integer should fill grid with integer', function(done) {
+    it('fill method with valid integer should fill grid with integer', function() {
         let xSize = 5;
         let ySize = 10;
         var grid = _module.create({ x: xSize, y: ySize });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tValue = 999;
         var result = grid.fill(tValue);
         for(var x = 0; x < xSize; x++ ) {
             for(var y = 0; y < ySize; y++ ) {
-                grid.get(x,y).should.eql(tValue);
+                assert.deepStrictEqual(grid.get(x,y), tValue);
             }
         }
-        done();
     });
 
-   it('cloneArray method should return a clone of the internal array', function(done) {
+   it('cloneArray method should return a clone of the internal array', function() {
         var grid = _module.create({ x: 1, y: 1 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
         let tValue = 100;
         var result = grid.set(tX,tY,tValue);
-        result.should.eql(true);
+        assert.deepStrictEqual(result, true);
         var arr = grid.cloneArray();
-        arr[tX][tY].should.eql(tValue);
-        done();
+        assert.deepStrictEqual(arr[tX][tY], tValue);
     });
 
-    it('log method should not throw exception', function(done) {
+    it('log method should not throw exception', function() {
         let xSize = 4;
         let ySize = 5;
         var grid = _module.create({ x: xSize, y: ySize });
-        should.exist(grid);
+        assert.ok(grid != null);
         grid.fill(10)
         grid.set(0,0,20);
         grid.set(xSize - 1, ySize - 1,30);
         grid.log();
-        done();
     });
 
-    it('getNeighborDirs should return correct list', function(done) {
+    it('getNeighborDirs should return correct list', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
-        grid.getNeighborDirs(1,1).should.eql([ "N", "S", "E", "W" ]);
-        done();
+        assert.ok(grid != null);
+        assert.deepStrictEqual(grid.getNeighborDirs(1,1), [ "N", "S", "E", "W" ]);
     });
 
-    it('getShuffledNeighborDirs should return shuffled list', function(done) {
+    it('getShuffledNeighborDirs should return shuffled list', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 1;
         let tY = 2;
         var shuffled = grid.getShuffledNeighborDirs(tX,tY);
-        shuffled.length.should.eql(4);
+        assert.deepStrictEqual(shuffled.length, 4);
         // Now and then it does return same list ...
-        // shuffled.should.not.eql(grid.getNeighborDirs(tX,tY));
-        done();
+        // assert.notDeepStrictEqual(shuffled, grid.getNeighborDirs(tX,tY));
     });
 
-    it('markVisited should return true for valid cell', function(done) {
+    it('markVisited should return true for valid cell', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
         let VISITED = 0x01;
         var result = grid.markVisited(tX,tY);
-        result.should.eql(true);
-        grid.get(tX,tY).should.eql(VISITED);
-        done();
+        assert.deepStrictEqual(result, true);
+        assert.deepStrictEqual(grid.get(tX,tY), VISITED);
     });
 
-    it('visited should return true for a visited cell', function(done) {
+    it('visited should return true for a visited cell', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.markVisited(tX,tY).should.eql(true);
-        grid.visited(tX,tY).should.eql(true);
-        done();
+        assert.deepStrictEqual(grid.markVisited(tX,tY), true);
+        assert.deepStrictEqual(grid.visited(tX,tY), true);
     });
 
-    it('hasConnections should return false when nothing connected', function(done) {
+    it('hasConnections should return false when nothing connected', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.hasConnections(tX,tY).should.eql(false);
-        done();
+        assert.deepStrictEqual(grid.hasConnections(tX,tY), false);
     });
 
-    it('getNeighbor should return neighbor x and y values', function(done) {
+    it('getNeighbor should return neighbor x and y values', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 2;
         let tY = 3;
         let list = ["N","S","E","W"];
         for( var key in list ) {
             var sDir = list[key];
             var cell = grid.getNeighbor(tX,tY,sDir);
-            should.exist(cell);
-            (cell.x >= tX - 1 && cell.x <= tX + 1).should.eql(true);
-            (cell.y >= tY - 1 && cell.y <= tY + 1).should.eql(true);
+            assert.ok(cell != null);
+            assert.deepStrictEqual((cell.x >= tX - 1 && cell.x <= tX + 1), true);
+            assert.deepStrictEqual((cell.y >= tY - 1 && cell.y <= tY + 1), true);
         }
-        done();
     });
 
-    it('connect should return true for valid parameters and set cell value to direction', function(done) {
+    it('connect should return true for valid parameters and set cell value to direction', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.connect(tX,tY,"S").should.eql(true);
+        assert.deepStrictEqual(grid.connect(tX,tY,"S"), true);
         let dirMap = grid.dirMap;  
-        grid.get(tX,tY).should.eql(dirMap.S);
-        done();
+        assert.deepStrictEqual(grid.get(tX,tY), dirMap.S);
     });
 
-    it('connectUndirected should return true for valid parameters and set cell values to direction', function(done) {
+    it('connectUndirected should return true for valid parameters and set cell values to direction', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        let status = grid.connectUndirected(tX,tY,"S").should.eql(true);
+        let status = grid.connectUndirected(tX,tY,"S");
+        assert.deepStrictEqual(status, true);
         let dirMap = grid.dirMap;
-        grid.get(tX,tY).should.eql(dirMap.S);
+        assert.deepStrictEqual(grid.get(tX,tY), dirMap.S);
         // Verify S neighbor points back to N neighbor
         var n = grid.getNeighbor(tX,tY,"S");
-        should.exist(n);
-        grid.get(n.x,n.y).should.eql(dirMap.N);
-        done();
+        assert.ok(n != null);
+        assert.deepStrictEqual(grid.get(n.x,n.y), dirMap.N);
     });
 
-    it('connects should return true for valid connection in direction', function(done) {
+    it('connects should return true for valid connection in direction', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.connect(tX,tY,"S").should.eql(true);
-        grid.connects(tX,tY,"S").should.eql(true);
-        done();
+        assert.deepStrictEqual(grid.connect(tX,tY,"S"), true);
+        assert.deepStrictEqual(grid.connects(tX,tY,"S"), true);
     });
 
-    it('connects should return false for invalid connection in direction', function(done) {
+    it('connects should return false for invalid connection in direction', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.connect(tX,tY,"S").should.eql(true);
-        grid.connects(tX,tY,"N").should.eql(false);
-        done();
+        assert.deepStrictEqual(grid.connect(tX,tY,"S"), true);
+        assert.deepStrictEqual(grid.connects(tX,tY,"N"), false);
     });
 
-    it('isMasked should return true for a masked cell', function(done) {
+    it('isMasked should return true for a masked cell', function() {
         var grid = _module.create({ x: 3, y: 3 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let tX = 0;
         let tY = 0;
-        grid.mask(tX,tY).should.eql(true);
-        grid.isMasked(tX,tY).should.eql(true);
-        done();
+        assert.deepStrictEqual(grid.mask(tX,tY), true);
+        assert.deepStrictEqual(grid.isMasked(tX,tY), true);
     });
 
-    it('getOppositeDir should return opposite neighbor', function(done) {
+    it('getOppositeDir should return opposite neighbor', function() {
         var grid = _module.create({ x: 5, y: 5 });
-        should.exist(grid);
+        assert.ok(grid != null);
         let list = ["N","S","E","W"];
         let opps = ["S","N","W","E"];
         for( var key in list ) {
             var sDir = list[key];
             var oDir = grid.getOppositeDir(sDir);
-            oDir.should.eql(opps[key]);
+            assert.deepStrictEqual(oDir, opps[key]);
         }
-        done();
     });
 });
