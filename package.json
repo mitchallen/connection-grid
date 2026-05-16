@@ -2,19 +2,22 @@
   "name": "@mitchallen/connection-grid",
   "version": "0.1.34",
   "description": "map connections between cells in a 2D grid",
-  "main": "dist/connection-grid.js",
+  "main": "src/index.js",
+  "browser": "dist/connection-grid.min.js",
   "scripts": {
-    "//": "To use: npm run test-nodemon (assumes global location of mocha)",
-    "start": "node dist/connection-grid.js",
-    "test": "grunt && mocha --recursive --timeout 20000",
-    "test-nodemon": "nodemon mocha --recursive --timeout 5000",
-    "test-create": "grunt && mocha test/create/ --recursive --timeout 5000",
-    "test-circle": "grunt &&  mocha test/circle/ --recursive --timeout 5000",
-    "test-hexagon": "grunt && mocha test/hexagon/ --recursive --timeout 5000",
-    "test-square": "grunt && mocha test/square/ --recursive --timeout 5000",
-    "test-triangle": "grunt && mocha test/triangle/ --recursive --timeout 5000",
-    "test-debug": "grunt && mocha -g '@DEBUG' --recursive --timeout 20000",
-    "test-jenkins": "grunt && mocha --recursive --timeout 20000 -R xunit test/ > test-reports.xml"
+    "start": "node src/index.js",
+    "build": "node build.js",
+    "lint": "eslint src/",
+    "test": "node build.js && node --test $(find test -name '*-test.js' | sort)",
+    "watch": "node build.js --watch",
+    "test-circle":   "node --test $(find test/circle   -name '*-test.js')",
+    "test-create":   "node --test $(find test/create   -name '*-test.js')",
+    "test-hexagon":  "node --test $(find test/hexagon  -name '*-test.js')",
+    "test-square":   "node --test $(find test/square   -name '*-test.js')",
+    "test-triangle": "node --test $(find test/triangle -name '*-test.js')",
+    "test-debug":    "node --test $(find test -name '*-test.js' | sort)",
+    "pubinit":       "node build.js && npm publish --access public",
+    "publish-pkg":   "node build.js && npm version patch && git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
@@ -23,38 +26,14 @@
   "author": "Mitch Allen <npm@mitchallen.com> (http://mitchallen.com)",
   "license": "ISC",
   "devDependencies": {
-    "babel-preset-es2015": "^6.18.0",
-    "babelify": "^10.0.0",
-    "browserify-derequire": "^0.9.4",
-    "grunt": "^0.3.17",
-    "grunt-browserify": "^5.0.0",
-    "grunt-bump": "^0.0.1",
-    "grunt-contrib-jshint": "^3.2.0",
-    "grunt-contrib-uglify": "^2.0.0",
-    "grunt-contrib-watch": "^0.4.4",
-    "grunt-shell": "^1.1.2",
-    "mocha": "^11.1.0",
-    "should": "^10.0.0",
-    "supertest": "^7.1.3"
+    "esbuild": "^0.25.0",
+    "eslint": "^9.0.0",
+    "globals": "^16.0.0"
   },
   "dependencies": {
     "@mitchallen/connection-grid-square": "^0.1.17",
     "@mitchallen/grid": "^0.1.25",
     "@mitchallen/grid-square": "^0.1.9",
     "@mitchallen/shuffle": "^0.1.7"
-  },
-  "overrides": {
-    "cookie": "0.7.0",
-    "send": "0.11.1",
-    "connect": "2.8.1",
-    "qs": "6.14.1",
-    "grunt": "1.5.2",
-    "cli": "1.0.0",
-    "request": "2.68.0",
-    "uglify-js": "2.4.24",
-    "serialize-javascript": "7.0.3",
-    "minimatch": "3.1.3",
-    "braces": "3.0.3",
-    "yargs-parser": "5.0.1"
   }
 }
