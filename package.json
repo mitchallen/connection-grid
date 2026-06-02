@@ -10,14 +10,14 @@
     "lint": "eslint src/",
     "test": "node build.js && node --test $(find test -name '*-test.js' | sort)",
     "watch": "node build.js --watch",
-    "test-circle":   "node --test $(find test/circle   -name '*-test.js')",
-    "test-create":   "node --test $(find test/create   -name '*-test.js')",
-    "test-hexagon":  "node --test $(find test/hexagon  -name '*-test.js')",
-    "test-square":   "node --test $(find test/square   -name '*-test.js')",
+    "test-circle": "node --test $(find test/circle   -name '*-test.js')",
+    "test-create": "node --test $(find test/create   -name '*-test.js')",
+    "test-hexagon": "node --test $(find test/hexagon  -name '*-test.js')",
+    "test-square": "node --test $(find test/square   -name '*-test.js')",
     "test-triangle": "node --test $(find test/triangle -name '*-test.js')",
-    "test-debug":    "node --test $(find test -name '*-test.js' | sort)",
-    "pubinit":       "node build.js && npm publish --access public",
-    "publish-pkg":   "node build.js && npm version patch && git push --follow-tags && npm publish"
+    "test-debug": "node --test $(find test -name '*-test.js' | sort)",
+    "pubinit": "node build.js && npm publish --access public",
+    "publish-pkg": "node build.js && npm version patch && git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",
@@ -35,5 +35,8 @@
     "@mitchallen/grid": "^0.1.25",
     "@mitchallen/grid-square": "^0.1.9",
     "@mitchallen/shuffle": "^0.1.7"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
