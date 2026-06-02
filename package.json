@@ -16,7 +16,7 @@
     "test-square": "node --test $(find test/square   -name '*-test.js')",
     "test-triangle": "node --test $(find test/triangle -name '*-test.js')",
     "test-debug": "node --test $(find test -name '*-test.js' | sort)",
-    "pubinit": "node build.js && npm publish --access public",
+    "pubinit": "node build.js && npm publish",
     "publish-pkg": "node build.js && npm version patch && git push --follow-tags && npm publish"
   },
   "repository": {
