@@ -22,10 +22,6 @@ module.exports = (spec) => {
         y: _y
     });
 
-    if(!_grid) {
-        return null;
-    }
-
     _grid.fill(0);
 
     let UP = 0x01,

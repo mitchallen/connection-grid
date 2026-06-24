@@ -417,5 +417,26 @@ describe('Circle smoke test', function() {
         assert.deepStrictEqual(grid.connect(ring,pos,"CW"), true);
         assert.deepStrictEqual(grid.connectsAny(ring,pos,["A","X","T"]), false);
     });
-    
+
+    it('exercises getNeighborDirs and getNeighbor for every cell', function() {
+        const dirs = ["CCW", "CW", "A", "T", "A0", "T0", "A1", "T1"];
+        for (let rings = 2; rings <= 12; rings++) {
+            var grid = _module.Circle({ rings: rings });
+            assert.ok(grid != null);
+            for (let ring = 0; ring < grid.rings; ring++) {
+                for (let pos = 0; pos < grid.ringSize(ring); pos++) {
+                    assert.ok(Array.isArray(grid.getNeighborDirs(ring, pos)));
+                    for (let dir of dirs) {
+                        // returns a neighbor cell or null at grid edges
+                        grid.getNeighbor(ring, pos, dir);
+                    }
+                }
+            }
+        }
+        // invalid cell and invalid direction both return null
+        var g = _module.Circle({ rings: 5 });
+        assert.strictEqual(g.getNeighbor(-1, -1, "CW"), null);
+        assert.strictEqual(g.getNeighbor(0, 0, "ZZ"), null);
+    });
+
 });

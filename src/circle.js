@@ -20,10 +20,6 @@ module.exports = (spec) => {
         rings: _rings
     });
 
-    if(!_grid) {
-        return null;
-    }
-
     _grid.fill(0);
 
     let _dirMap = { 
@@ -156,11 +152,7 @@ module.exports = (spec) => {
 
             let nc = NEIGHBOR_MAP[dir];
 
-            if(!nc) {
-                return null;
-            }
-
-            if(!this.isCell(nc.x, nc.y)) { 
+            if(!this.isCell(nc.x, nc.y)) {
                 return null; 
             }
 

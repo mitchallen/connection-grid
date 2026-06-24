@@ -309,4 +309,22 @@ describe('Triangle smoke test', function() {
         assert.deepStrictEqual(grid.connect(x,y,"N"), true);
         assert.deepStrictEqual(grid.connectsAny(x,y,["E","X","W"]), false);
     });
+
+    it('exercises getNeighborDirs and getNeighbor for every cell', function() {
+        var grid = _module.Triangle({ x: 5, y: 5 });
+        assert.ok(grid != null);
+        const dirs = ["N", "S", "E", "W"];
+        for (let x = 0; x < grid.xSize; x++) {
+            for (let y = 0; y < grid.ySize; y++) {
+                assert.ok(Array.isArray(grid.getNeighborDirs(x, y)));
+                for (let dir of dirs) {
+                    // returns a neighbor cell or null at grid edges
+                    grid.getNeighbor(x, y, dir);
+                }
+            }
+        }
+        // invalid cell and invalid direction both return null
+        assert.strictEqual(grid.getNeighbor(-1, -1, "N"), null);
+        assert.strictEqual(grid.getNeighbor(0, 0, "ZZ"), null);
+    });
 });
