@@ -11,11 +11,28 @@ Map connections between cells in a 2D grid.
 * * *
 ## Installation
 
-You must use __npm__ __2.7.0__ or higher because of the scoped package name.
+This package — and its `@mitchallen` dependencies — is published to the
+**GitHub Packages** registry, not npmjs. Installing requires authentication
+even though the packages are public, so you need a GitHub personal access
+token with the `read:packages` scope.
 
-    $ npm init
+Route the `@mitchallen` scope to GitHub Packages in your project `.npmrc`
+(no secret — safe to commit):
+
+    @mitchallen:registry=https://npm.pkg.github.com
+
+Then add your token to your **user** `~/.npmrc` so it never lands in the repo:
+
+    npm config set //npm.pkg.github.com/:_authToken=YOUR_TOKEN --location=user
+
+Do **not** put the `_authToken` line in the project `.npmrc` — if committed it
+exposes your token. (In CI, set `NODE_AUTH_TOKEN` and reference it with
+`//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}`.)
+
+Then install:
+
     $ npm install @mitchallen/connection-grid --save
-  
+
 * * *
 
 ## Usage
