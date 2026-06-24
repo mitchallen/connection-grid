@@ -27,3 +27,6 @@ coverage/
 
 # Grunt
 .grunt/
+
+lcov.info
+coverage
