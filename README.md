@@ -2,6 +2,12 @@
 ==
 Map connections between cells in a 2D grid.
 --
+
+[![CI](https://github.com/mitchallen/connection-grid/actions/workflows/ci.yml/badge.svg)](https://github.com/mitchallen/connection-grid/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/mitchallen/connection-grid/branch/master/graph/badge.svg)](https://codecov.io/gh/mitchallen/connection-grid)
+[![Version](https://img.shields.io/github/package-json/v/mitchallen/connection-grid)](https://github.com/mitchallen/connection-grid/pkgs/npm/connection-grid)
+[![License](https://img.shields.io/github/license/mitchallen/connection-grid.svg)](https://github.com/mitchallen/connection-grid/blob/master/LICENSE)
+
 * * *
 ## Installation
 
