@@ -3,6 +3,10 @@
   "version": "0.1.36",
   "description": "map connections between cells in a 2D grid",
   "main": "src/index.js",
+  "files": [
+    "src",
+    "dist"
+  ],
   "browser": "dist/connection-grid.min.js",
   "scripts": {
     "start": "node src/index.js",
