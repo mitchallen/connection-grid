@@ -61,7 +61,7 @@ Example:
         <meta charset="utf-8">
         <title>Connection-Grid Example</title>
         <meta name="description" content="Connection Grid Example">
-        <script src="https://cdn.jsdelivr.net/gh/mitchallen/connection-grid@v0.1.33/dist/connection-grid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/mitchallen/connection-grid@v0.1.38/dist/connection-grid.min.js"></script>
         <script>
           var factory = window.MitchAllen.ConnectionGrid;
           console.log(factory);
