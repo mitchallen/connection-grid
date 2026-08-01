@@ -1,13 +1,12 @@
 {
   "name": "@mitchallen/connection-grid",
-  "version": "0.1.37",
+  "version": "0.1.38",
   "description": "map connections between cells in a 2D grid",
   "main": "src/index.js",
   "files": [
     "src",
     "dist"
   ],
-  "browser": "dist/connection-grid.min.js",
   "scripts": {
     "start": "node src/index.js",
     "build": "node build.js",
@@ -36,10 +35,10 @@
     "globals": "^16.0.0"
   },
   "dependencies": {
-    "@mitchallen/connection-grid-square": "^0.1.17",
-    "@mitchallen/grid": "^0.1.25",
-    "@mitchallen/grid-square": "^0.1.9",
-    "@mitchallen/shuffle": "^0.1.7"
+    "@mitchallen/connection-grid-square": "^0.1.20",
+    "@mitchallen/grid": "^0.1.29",
+    "@mitchallen/grid-square": "^0.1.13",
+    "@mitchallen/shuffle": "^0.1.14"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
