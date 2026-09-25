@@ -1,8 +1,11 @@
-> **This repository is archived.** `@mitchallen/connection-grid` is now developed and
-> published from the [maze-generator-v2](https://github.com/mitchallen/maze-generator-v2)
-> monorepo, in [`packages/connection-grid`](https://github.com/mitchallen/maze-generator-v2/tree/main/packages/connection-grid).
-> The package name and install instructions are unchanged; new versions come
-> from there.
+> **This repository is archived, and `@mitchallen/connection-grid` is frozen at 0.1.41.**
+> That version stays installable from GitHub Packages for existing users, but
+> there will be no further releases. The code continues as
+> `@mitchallen/connection-grid-v2`, an internal package of the
+> [maze-generator-v2](https://github.com/mitchallen/maze-generator-v2) monorepo
+> ([`packages/connection-grid`](https://github.com/mitchallen/maze-generator-v2/tree/main/packages/connection-grid)),
+> bundled into `@mitchallen/maze-generator-v2`. Version 0.1.41 was published from
+> that repo at tag `v0.3.7`.
 
 @mitchallen/connection-grid
 ==
