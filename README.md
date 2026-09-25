@@ -4,7 +4,7 @@ Map connections between cells in a 2D grid.
 --
 
 [![CI](https://github.com/mitchallen/connection-grid/actions/workflows/ci.yml/badge.svg)](https://github.com/mitchallen/connection-grid/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/mitchallen/connection-grid/branch/main/graph/badge.svg)](https://codecov.io/gh/mitchallen/connection-grid)
+[![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/mitchallen/connection-grid/actions/workflows/ci.yml?query=branch%3Amain)
 [![Version](https://img.shields.io/github/package-json/v/mitchallen/connection-grid)](https://github.com/mitchallen/connection-grid/pkgs/npm/connection-grid)
 [![License](https://img.shields.io/github/license/mitchallen/connection-grid.svg)](https://github.com/mitchallen/connection-grid/blob/main/LICENSE)
 
@@ -15,6 +15,8 @@ This package — and its `@mitchallen` dependencies — is published to the
 **GitHub Packages** registry, not npmjs. Installing requires authentication
 even though the packages are public, so you need a GitHub personal access
 token with the `read:packages` scope.
+
+Versions **0.1.34** and earlier remain on npmjs.org and are no longer updated there.
 
 Route the `@mitchallen` scope to GitHub Packages in your project `.npmrc`
 (no secret — safe to commit):
